@@ -1,0 +1,289 @@
+---
+title: "Data cleaning: Systematic review of how we measure functional diversity (FD)"
+author: "Marissa Lee"
+date: "April 2, 2016"
+output: pdf_document
+---
+
+In order to run this markdown file *cleaning.Rmd*, you will need these folders and files:
+
+* *downloadedData*: Folder that contains raw data that was downloaded from googleSheets (1) FDMetricsDetails.csv, (2) StudyInfoClean.csv, (3) TraitInfo.csv
+
+Set up the markdown cache, set your working directory, and load the libraries. 
+```{r setup,echo=FALSE, warning=FALSE, message=FALSE}
+#set markdown cache so that it doesn't take forever to build the final pdf
+knitr::opts_chunk$set(cache=TRUE)
+
+#set working directory
+#setwd("~/Desktop/wd_functionalDiv")
+
+#set path to save cleaned data
+#filePath<-"~/Desktop/wd_functionalDiv/cleanData"
+filePath<-"cleanData"
+
+# #load libraries
+library(splitstackshape) #for cSplit()
+library(plyr) 
+
+```
+Read-in data
+```{r readin,echo=FALSE}
+#read data
+Study.Info<-read.delim("downloadedData/StudyInfoClean.csv", sep=",", header = TRUE, na.strings = "")
+FD.Metrics<-read.delim("downloadedData/FDMetricsDetails.csv", sep=",", header = TRUE, na.strings = "")
+Trait.Info<-read.delim("downloadedData/TraitInfo.csv", sep=",", header = TRUE, na.strings = "")
+```
+
+# Issue 1: Funky trait names
+MRL had noticed some funky entries in the 'Trait.Name' column.  So, MRL did a full sweep and created a new column, 'NOT.A.TRAIT' to identify rows with a suspicious 'Trait.Name' entry. For example...
+```{r issue1_1,echo=FALSE}
+colsToShow<-c("ID","TraitNum","Trait.Name")
+Trait.Info[!is.na(Trait.Info$NOT.A.TRAIT.),colsToShow]
+#IDs == 296, 390, 513
+```
+So, rows were removed in Trait.Info where 'NOT.A.TRAIT.' indicates that either (a) the trait is not valid or (b) there is a study note that says that functional diversity was never really measured.
+```{r issue1_2,echo=FALSE}
+Trait.Info.real<-Trait.Info[is.na(Trait.Info$NOT.A.TRAIT.),] 
+```
+
+# Issue 2: No traits or only 1 trait
+```{r issue2_1,echo=FALSE, warning=FALSE}
+#identify the unique ids in Trait.Info.real and count the number of trait rows per id
+summ <- ddply(Trait.Info.real,~ID, summarise, nTrait=length(unique(Trait.Name))) 
+
+#merge the table of ids x number of traits ('nTrait') with the Study.Info dataframe so that we have an accurate record of the number of trait rows per studyid row
+Study.Info.numTr<-merge(Study.Info, summ, by='ID', all.x=TRUE)
+
+#when 'nTrait' was merged, it added NAs where no traits were found in Trait.Info, so go back and make these NAs == 0
+Study.Info.numTr[is.na(Study.Info.numTr$nTrait),'nTrait']<-0
+
+#Which accepted IDs do not appear in Trait.Info?
+answer1<-Study.Info.numTr[Study.Info.numTr$nTrait==0 & Study.Info.numTr$accept.reject=='accept','ID']
+paste('ID =', paste(answer1, collapse=','), 'are IDs from accepted studies but there is no matching ID in Trait.Info')
+
+#Which accepted IDs do not have >1 trait in Trait.Info?
+answer2<-Study.Info.numTr[Study.Info.numTr$nTrait==1 & Study.Info.numTr$accept.reject=='accept','ID']
+paste('ID =', paste(answer2, collapse=','), 'are IDs from accepted studies but there is only 1 trait in Trait.Info')
+```
+Studies were identified that do not have corresponding Trait.Info rows `r answer1` or only 1 Trait.Info row `r answer2`.  Studies that do not report multiple traits do not qualify for this synthesis review, so I updated the entry to 'reject' in the column 'accept.reject' of dataset 'Study.Info' for study IDs that are problematic and subsetted only the 'accepted' studies across the datasets
+```{r issue2_2,echo=FALSE, warning=FALSE}
+#reject studies
+Study.Info.numTr[Study.Info.numTr$ID %in% c(answer1, answer2),'accept.reject']<-'reject'
+```
+Since we had to count the number of traits per study ID anyhow, let's check the manually-entered values in the column 'total.number.traits' of the dataset 'Study.Info'. It looks like these values are not exactly the same, so let's go with 'nTrait' as an accurate count of the number of traits per study from here out.
+```{r checkNumTraits,echo=FALSE, warning=FALSE, include=FALSE}
+Study.Info.numTr[42:45,c('total.number.traits','nTrait')] 
+```
+
+# Issue 3: Non-standardized factor names
+There are some odd enter key characters that have ended up in study info categories.  These have been corrected. Check out the imbeded code chunk if you'd like more detail.
+```{r issue3, echo=FALSE, warning=FALSE, include=FALSE}
+#clean sys1 in Study.Info
+unique(Study.Info.numTr$sys1)
+Study.Info.numTr[Study.Info.numTr$sys1 == 'A\n' & !is.na(Study.Info.numTr$sys1),'sys1']<-'A'
+Study.Info.numTr[Study.Info.numTr$sys1 == 'T\n' & !is.na(Study.Info.numTr$sys1),'sys1']<-'T'
+Study.Info.numTr[Study.Info.numTr$sys1 == 'NA' & !is.na(Study.Info.numTr$sys1),'sys1']<-NA
+Study.Info.numTr$sys1<-droplevels(Study.Info.numTr$sys1)
+
+#clean habitat in Study.Info
+unique(Study.Info.numTr$habitat)
+Study.Info.numTr[Study.Info.numTr$habitat == 'TEMP\n' & !is.na(Study.Info.numTr$habitat),'habitat']<-'TEMP'
+Study.Info.numTr[Study.Info.numTr$habitat == 'GRAS\n' & !is.na(Study.Info.numTr$habitat),'habitat']<-'GRAS'
+Study.Info.numTr[Study.Info.numTr$habitat == 'NA' & !is.na(Study.Info.numTr$habitat),'habitat']<-NA
+Study.Info.numTr$habitat<-droplevels(Study.Info.numTr$habitat)
+```
+
+# Issue 4: Studies without a FD metric at all
+```{r issue4, echo=FALSE, warning=FALSE, include=FALSE}
+sum(Study.Info.numTr$multivar.FD.Measure=="NA" & !is.na(Study.Info.numTr$multivar.FD.Measure))
+sum(is.na(Study.Info.numTr$multivar.FD.Measure))
+
+# if study IDs do not calculate a metric, then they must be rejected
+colnames(Study.Info.numTr)
+Study.Info.numTr[Study.Info.numTr$multivar.FD.Measure=="NA" & !is.na(Study.Info.numTr$multivar.FD.Measure),"accept.reject"]<-"reject"
+Study.Info.numTr[is.na(Study.Info.numTr$multivar.FD.Measure),"accept.reject"]<-"reject"
+sum(Study.Info.numTr$accept.reject=="accept") #real number of studies
+
+#subset only accepted studies
+Study.Info.Subset<-Study.Info.numTr[Study.Info.numTr$accept.reject%in%c("accept"),] 
+FD.Metrics.Subset<-FD.Metrics[FD.Metrics$acceptESA%in%c("accept"),] 
+acceptIDs<-unique(Study.Info.Subset$ID)
+Trait.Info.Subset<-Trait.Info.real[Trait.Info.real$ID %in% acceptIDs,]
+
+#double check that Study.Info and Trait.Info have the same set of unique IDs
+sum(!unique(Study.Info.Subset$ID) %in% unique(Trait.Info.Subset$ID)) #if 0, then all the IDs in studyInfo are in traitInfo
+sum(!unique(Trait.Info.Subset$ID) %in% unique(Study.Info.Subset$ID)) #if 0, then all the IDs in traitInfo are in studyInfo
+
+
+#convert to data frame 
+Study.Info.Subset.DF<-as.data.frame(Study.Info.Subset)
+FD.Metrics.Subset.DF<-as.data.frame(FD.Metrics.Subset)
+Trait.Info.Subset.DF<-as.data.frame(Trait.Info.Subset)
+
+```
+
+
+
+
+# Reshape dataframes
+
+## Make a *sys1Grp* category
+I created a compound category that combines sys1 (e.g. aquatic or terrestrial) and group (e.g. plant or animal).
+```{r sys1Grp_1,echo=FALSE, warning=FALSE, include=TRUE}
+#make a compound category: sys1 x group
+Study.Info.Subset.DF$sys1Grp<-paste(Study.Info.Subset.DF$sys1,Study.Info.Subset.DF$group, sep="_")
+
+#identify the unique combinations
+summ.sys1Grp<-ddply(Study.Info.Subset.DF, ~sys1Grp, summarize,n=length(unique(ID)))
+sys1Grp.names<-c('aquatic animals','aquatic microbes','aquatic plants',
+                 'terrestrial animals','terrestrial animals & plants',
+                 'terrestrial microbes','terrestrial plants','terrestrial & aquatic animals')
+summ.sys1Grp$sys1Grp.names<-sys1Grp.names
+summ.sys1Grp
+
+Study.Info.Subset.DF1<-merge(Study.Info.Subset.DF, summ.sys1Grp[,c('sys1Grp','sys1Grp.names')])
+tmp<-Study.Info.Subset.DF1[,-which(colnames(Study.Info.Subset.DF1) == 'sys1Grp')]
+colnames(tmp)[colnames(tmp) == 'sys1Grp.names']<-'sys1Grp'
+Study.Info.Subset.DF<-tmp
+```
+
+Studies were coded as 'other' for *sys1Grp* if they did not fit into one of the following: 'aquatic animal','aquatic plant','terrestrial animal','terrestrial plant'. 
+```{r sys1Grp_3,echo=FALSE, warning=FALSE}
+#simplify sys1Grp levels
+Study.Info.Subset.DF[!Study.Info.Subset.DF$sys1Grp %in% c('aquatic animals','aquatic plants',
+                                                          'terrestrial animals','terrestrial plants'),
+                     'sys1Grp']<-'other'
+Study.Info.Subset.DF$sys1Grp<-factor(Study.Info.Subset.DF$sys1Grp, levels=c('terrestrial plants','terrestrial animals','aquatic plants','aquatic animals','other'))
+```
+
+## Create a function to expand and melt variables that are contained in comma-separated data. See...
+```{r meltCommasfxn,echo=FALSE, warning=FALSE}
+#function to expand and melt variables with comma-separated data
+source("code/fxn_ExpandMelt.R")
+```
+
+## Create an annotated trait dataframe, *df.trait.annotated*
+Merged the FDtraits dataframe with the FDmetricDetails dataframe
+```{r annotatedTraitDF,echo=FALSE, warning=FALSE}
+df.trait.annotated<-merge(Study.Info.Subset.DF, Trait.Info.Subset.DF, by="ID", all.x=TRUE) #this should have the same number of rows
+
+sum(!unique(Study.Info.Subset.DF$ID) %in% unique(df.trait.annotated$ID))
+
+# #summarize by sys1
+# summ.tr <- ddply(df.trait.annotated,~sys1+Trait.Category.New+Trait.Name, summarise, 
+#                    nID=length(unique(ID)))
+# summ.tr
+```  
+
+## Create a dataframe to examine the use of different FD metrics, *df.metric*
+Prep data by merging the FDmetric-expanded StudyInfo df with the FDmetricDetails df. In doing this, MRL simplified the list of unique FD metrics by removing the 'ses' designation from the metric codes. The 'ses' stands for 'standardized effect size', and just means that the authors calculated a standardized effect size of a give FD value relative to a null model.
+```{r metricDF, echo=FALSE, warning=FALSE}
+df.metric<-ExpandMelt(df=Study.Info.Subset.DF, varName='multivar.FD.Measure')
+
+#simplify FD multivar metrics by removing 'ses' from the front of those codes
+df.metric<-data.frame(df.metric)
+df.metric$multivar.FD.Measure<-as.character(df.metric$multivar.FD.Measure)
+ses.multivar<-df.metric[grepl('ses', df.metric$multivar.FD.Measure),'multivar.FD.Measure']
+updated.multivar<-ldply(strsplit(ses.multivar, 'ses'))[,2]
+df.metric[grepl('ses', df.metric$multivar.FD.Measure),'multivar.FD.Measure']<-updated.multivar
+
+#summarize df.metric
+simp<-ddply(df.metric,~ID, summarise, 
+            nCode=length(unique(multivar.FD.Measure)), 
+            nCode2=length(multivar.FD.Measure)) #make sure there aren't any duplicate codes for an ID now
+#sum(simp$nCode != simp$nCode2) #if this is not 0, then there are duplicates
+
+#merge df.metric and FD.Metrics.Subset.DF by multivar.FD.Measure
+setnames(df.metric, 'multivar.FD.Measure','code')
+FD.Metrics.Subset.DF$code<-as.character(FD.Metrics.Subset.DF$code)
+u.codes<-unique(df.metric$code)
+lookup.codes<-unique(FD.Metrics.Subset.DF$code)
+#u.codes[!u.codes %in% lookup.codes] #these codes are missing from the FD metric lookup table
+df.metric.annotated<-merge(df.metric, FD.Metrics.Subset.DF, by="code", all.x=TRUE) #this should have the same number of rows as df.metric
+df.metric.annotated$CAT_abundance<-droplevels(df.metric.annotated$CAT_abundance)
+df.metric.annotated$CAT_dimension<-droplevels(df.metric.annotated$CAT_dimension)
+```  
+
+## Summary of the datasets
+
+### Study.Info.1
+
+- ID = unique for each study
+- year = publication year
+- region.ISO3 = country code (multiple entries are comma-separated)
+- sys1 = aquatic, terrestrial (multiple entries are comma-separated)
+- habitat = tropical, temperate, etc. (multiple entries are comma-separated)
+- group = plant, animal, etc. (multiple entries are comma-separated)
+- sub.group = shrub, forb, etc. (multiple entries are comma-separated)
+- animal.group = birds, arthropods, etc. (multiple entries are comma-separated)
+- sys1Grp = terrestrial animal, terrestrial plant, etc
+- multivar.FD.Measure = Rao, FRic, etc (multiple entries are comma-separated)
+- Total.Number.Species = number of species per study
+- nTrait = number of traits per study  
+```{r dataset1, echo=FALSE}
+keepCols<-c("ID",
+            "year",
+            "region.ISO3",
+            "sys1","habitat","group","sub.group","animal.group","sys1Grp",
+            "multivar.FD.Measure",
+            "Total.Number.Species",
+            "nTrait")
+Study.Info.1<-Study.Info.Subset.DF[,keepCols]
+
+fileName<-paste(filePath,"StudyInfo1.txt", sep= "/")
+write.table(x=Study.Info.1, file=fileName, sep = "\t")
+```
+
+### Trait.Info.1
+
+- ID = unique for each study
+- TraitNum = unique for each study and trait
+- Trait.Name = trait name provided by the author
+- Trait.Category.New = type of trait 
+- Trait.Source = 1,2,3 (multiple entries are comma-separated)
+- Trait.Rationale = general, specific
+- Other study identifiers...year, region.ISO3, sys1, habitat, group, sub.group, animal.group, sys1Grp, multivar.FD.Measure, Total.Number.Species, nTrait
+```{r dataset2, echo=FALSE}
+keepCols<-c("ID",
+            "TraitNum", "Trait.Name",
+            "Trait.Category.New",
+            "Trait.Source", 
+            "Trait.Rationale",
+            "year",
+            "region.ISO3",
+            "sys1","habitat","group","sub.group","animal.group","sys1Grp",
+            "multivar.FD.Measure",
+            "Total.Number.Species",
+            "nTrait")
+Trait.Info.1<-df.trait.annotated[,keepCols]
+
+fileName<-paste(filePath,"TraitInfo1.txt", sep="/")
+write.table(x=Trait.Info.1, file=fileName, sep = "\t")
+```
+
+### Metric.Info.1
+
+- ID = unique for each study
+- code = metric code
+- name = metric name
+- CAT_dimension = evenness, divergence, etc.
+- CAT_multivarMethod = ordinate, cluster, etc.
+- CAT_abundance = yes, no
+- Other study identifiers...year, region.ISO3, sys1, habitat, group, sub.group, animal.group, sys1Grp, Total.Number.Species, nTrait
+```{r dataset3, echo=FALSE}
+keepCols<-c("ID",
+            "code", "name", 
+            "CAT_dimension",
+            "CAT_multivarMethod",
+            "CAT_abundance",
+            "year",
+            "region.ISO3",
+            "sys1","habitat","group","sub.group","animal.group","sys1Grp",
+            "Total.Number.Species",
+            "nTrait")
+Metric.Info.1<-df.metric.annotated[,keepCols]
+
+fileName<-paste(filePath,"MetricInfo1.txt", sep="/")
+write.table(x=Metric.Info.1, file=fileName, sep = "\t")
+```
+

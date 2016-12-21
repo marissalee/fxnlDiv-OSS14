@@ -1,0 +1,6 @@
+"0","paste('ID =', paste(answer2, collapse=','), 'are IDs from accepted studies but there is only 1 trait in Trait.Info')
+"
+"1","[1]"
+"1"," ""ID = 486,704,736 are IDs from accepted studies but there is only 1 trait in Trait.Info"""
+"1","
+"

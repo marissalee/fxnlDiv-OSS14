@@ -1,0 +1,152 @@
+"ID"	"year"	"region.ISO3"	"sys1"	"habitat"	"group"	"sub.group"	"animal.group"	"sys1Grp"	"multivar.FD.Measure"	"Total.Number.Species"	"nTrait"
+"1"	385	2014	"SLB"	"A"	"PELA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"PEI"	"73"	6
+"2"	178	2013	"JPN"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"sesFD"	"120"	16
+"3"	102	2014	"SWE"	"A"	"RIPA"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"FDis"	"21"	5
+"4"	340	2014	"USA"	"A"	"RIPA"	"animal"	"invertebrates"	"arthropods"	"aquatic animals"	"FEve, Rao"	"79"	4
+"5"	566	2014	"NA"	"A"	"NEAR"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"FRic, FV, FOR"	"222"	6
+"6"	333	2014	"NA"	"A"	"NEAR"	"animal"	"invertebrates"	"mollusks"	"aquatic animals"	"FAD1, FEve"	"993"	5
+"7"	595	2014	"FRA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"FRic"	"37"	10
+"8"	304	2014	"USA"	"A"	"NEAR"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"Clust-Rao"	"50"	28
+"9"	690	2014	"PRT"	"A"	"LAKE"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"Rao"	"27"	5
+"10"	697	2014	"NA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"Fbeta"	"286"	6
+"11"	419	2014	"SWE"	"A"	"RIPA"	"animal"	"invertebrates"	"arthropods"	"aquatic animals"	"FDis"	"NA"	5
+"12"	448	2014	"USA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"sesFRic, sesFEve, sesFDiv"	"6"	4
+"13"	284	2013	"NA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"Fbeta"	"230"	7
+"14"	295	2014	"RUS"	"A"	"PELA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"FD"	"98"	8
+"15"	81	2012	"GRC"	"A"	"NEAR"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"FDiv, FRq"	"5"	7
+"16"	35	2013	"FRA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"FDiv, M-NND"	"35"	13
+"17"	664	2014	"AUS"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"FDis, FEve"	"194"	10
+"18"	253	2012	"NA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"sesFEve, sesRao"	"230"	14
+"19"	343	2014	"GBR"	"A"	"NEAR"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"Rao"	"67"	8
+"20"	330	2014	"FRA"	"A"	"RIPA"	"microbes"	"diatoms"	"NA"	"other"	"Rao, FEve, FDis"	"NA"	2
+"21"	215	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"FAD2, MFAD, M-NND, sesRaoB, sesRao, sesFD, sesHED, sesEED, sesFEve"	"46"	9
+"22"	113	2009	"GBR"	"A"	"NEAR"	"plant"	"algae"	"NA"	"aquatic plants"	"FAD2"	"6"	4
+"23"	421	2014	"CHN"	"A"	"LAKE"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"Rao, FRic, FEve, FDiv"	"17"	16
+"24"	209	2013	"HUN"	"A"	"LAKE"	"plant"	"algae"	"NA"	"aquatic plants"	"Clust-Evenness, Clust-ShannonsH"	"124"	7
+"25"	349	2014	"SLB"	"T"	"NEAR"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"FD, FRic, FEve, FDiv"	"NA"	4
+"26"	612	2014	"ARG"	"T"	"DESE"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"FD, Rao"	"NA"	11
+"27"	14	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FRic, FDis, FEve"	"52"	5
+"28"	17	2014	"NZL, FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"FRic, FEve, FDiv, FDis"	"54"	7
+"29"	251	2012	"DEU"	"T"	"NEAR"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"FDis, FEve, FDiv"	"NA"	3
+"30"	66	2013	"NA"	"T"	"OTHR"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"FD, FD-C"	"NA"	13
+"31"	23	2010	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FD, FAD2"	"99"	4
+"32"	27	2005	"NA"	"T"	"OTHR"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"FD"	"NA"	11
+"33"	627	2014	"DEU"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"Rao"	"122"	5
+"34"	361	2014	"FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"Rao"	"NA"	6
+"35"	641	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FEve, FDiv, FRic, FDp, MPD, M-NND"	"530"	9
+"36"	223	2007	"GBR"	"T"	"NEAR, LAKE, TEMP, GRAS"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"FD"	"192"	6
+"37"	91	2006	"CIV, GUY"	"T"	"TROP"	"animal"	"vertebrates"	"herps"	"terrestrial animals"	"FD"	"67"	5
+"38"	75	2010	"FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"FD"	"239"	6
+"39"	297	2010	"GBR"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"Rao"	"42"	10
+"40"	60	2013	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"FD, FDis, FDiv"	"191"	8
+"41"	250	2013	"DEU"	"T"	"NEAR"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"FDis"	"105"	3
+"42"	599	2014	"NZL"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FDis, sesFRic"	"25"	10
+"43"	128	2012	"BRA"	"T"	"TROP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"sesClust-MPD"	"162"	5
+"44"	568	2014	"DEU"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"sesMPD"	"231"	7
+"45"	87	2014	"IDN"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FEve, FRic, FDiv, FDis, FSpe"	"64"	5
+"46"	184	2012	"GBR"	"T"	"NEAR"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"sesFD"	"20"	7
+"47"	427	2014	"DEU"	"T"	"GRAS"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FDis, sesFbeta_FDis"	"153"	8
+"48"	82	2013	"CHN"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"FRic, FEve, FDiv"	"NA"	4
+"49"	298	2014	"GBR"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"sesFDis, sesFbeta_FDis"	"105"	11
+"50"	277	2012	"NA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"FD"	"844"	5
+"51"	645	2014	"BRA"	"T"	"TROP"	"animal"	"vertebrates"	"mammals, birds"	"terrestrial animals"	"MPD"	"2096"	6
+"52"	678	2014	"DEU"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"sesMPD"	"179"	4
+"53"	590	2014	"FRA"	"T"	"AGRI"	"animal"	"invertebrates"	"annelids"	"terrestrial animals"	"Rao"	"11"	7
+"54"	504	2014	"FRA"	"T"	"LAKE"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FDc"	"31"	4
+"55"	618	2014	"SWE"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FEve, FDiv, FDis, FRic, sesFbeta_FDis"	"125"	7
+"56"	708	2014	"PRT"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"FRic, sesFbeta"	"648"	9
+"57"	12	2013	"CAN"	"T"	"TAIG"	"animal, plant"	"shrubs, forbs, graminoids"	"NA"	"other"	"Rao"	"NA"	23
+"58"	206	2014	"GBR"	"T"	"GRAS"	"animal, plant"	"invertebrates, graminoids, forbs"	"arthropods"	"other"	"sesFRic, sesFEve, sesFDiv"	"32"	14
+"59"	625	2014	"CHE"	"T"	"AGRI"	"animal, plant"	"invertebrates, vertebrates, trees, shrubs, graminoids, forbs"	"NA"	"other"	"FDis"	"574"	4
+"60"	325	2014	"DEU"	"T"	"TEMP"	"microbes"	"fungi"	"NA"	"other"	"sesMFPD, FDis"	"NA"	3
+"61"	502	2014	"FRA"	"T"	"GRAS"	"microbes"	"microbemix"	"NA"	"other"	"FRic, Rao"	"4"	3
+"62"	43	2012	"BOL"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FRic, FEve, FDiv"	"77"	12
+"63"	275	2014	"CAN, USA"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FDis"	"18"	4
+"64"	55	2011	"ARG"	"T"	"GRAS"	"plant"	"shrubs, forbs, graminoids, trees"	"NA"	"terrestrial plants"	"Rao"	"67"	15
+"65"	535	2014	"BRA"	"T"	"GRAS"	"plant"	"trees"	"NA"	"terrestrial plants"	"FDiv, FRic, FEve"	"443"	6
+"66"	57	2009	"BRA"	"T"	"GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"iFD, FD"	"NA"	3
+"67"	72	2009	"ESP"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"Rao"	"8"	9
+"68"	144	2013	"NZL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"FRic, FDis"	"NA"	2
+"69"	147	2012	"CHN"	"T"	"GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"Rao"	"55"	12
+"70"	40	2013	"ITA"	"T"	"NEAR"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"NA"	16
+"71"	20	2011	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"FRic, FEve, FDiv"	"22"	14
+"72"	123	2013	"CZE"	"T"	"GRAS"	"plant"	"forbs"	"NA"	"terrestrial plants"	"MPD, FRic, FEve, M-NND, SD-NND"	"13"	4
+"73"	163	2012	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FD, wFDc"	"79"	9
+"74"	68	2013	"CAN"	"T"	"LAKE"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"FDis"	"96"	8
+"75"	132	2014	"USA"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"FRic"	"46"	4
+"76"	137	2012	"SLB"	"T"	"TROP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"FRic, FEve, FDis"	"394"	4
+"77"	28	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"RaoR, Rao, FEq"	"130"	25
+"78"	19	2013	"FRA"	"T"	"GRAS"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"NA"	7
+"79"	381	2014	"NA"	"T"	"OTHR"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"KSI"	"48324"	5
+"80"	158	2014	"GBR"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"sesFRic, sesFDiv"	"NA"	9
+"81"	207	2013	"GBR"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs, nonvascular"	"NA"	"terrestrial plants"	"sesFRic, sesFEve, sesFDiv"	"NA"	19
+"82"	42	2012	"ESP"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"Rao"	"4"	8
+"83"	242	2013	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao, FRic, FDiv, FEve"	"60"	18
+"84"	248	2014	"JPN"	"T"	"LAKE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"sesFD, sesRao"	"56"	14
+"85"	249	2008	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"31"	6
+"86"	235	2013	"SWE"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"MPDTw, MPDTw_beta"	"234"	11
+"87"	34	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"FRic"	"284"	4
+"88"	198	2013	"USA"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"Rao"	"45"	4
+"89"	266	2014	"FRA"	"T"	"TEMP"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"FRic, FD"	"291"	6
+"90"	125	2014	"IRL, GBR, FRA, DEU, NOR, SWE, DNK, NLD, BEL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"FDc, wFDc, Rao, RaoR"	"NA"	19
+"91"	271	2012	"NA"	"T"	"TEMP, TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"sesFD, sesMPD, sesM-NND"	"NA"	6
+"92"	501	2014	"SWE"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"withinSpRao, betweenSpRao, Rao"	"NA"	3
+"93"	44	2014	"BRA"	"T"	"GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"iFD"	"55"	10
+"94"	267	2012	"USA"	"T"	"TUND"	"plant"	"forbs, shrubs"	"NA"	"terrestrial plants"	"sesFDis"	"75"	5
+"95"	290	2002	"AUS"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"FAD2"	"67"	5
+"96"	600	2014	"SWE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"sesFDis, sesFRic, sesFbeta_FDis"	"235"	8
+"97"	105	2013	"AUS"	"T"	"TROP"	"plant"	"forbs"	"NA"	"terrestrial plants"	"FDis"	"163"	5
+"98"	552	2014	"GER"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"NA"	10
+"99"	303	2013	"CAN"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FDis"	"52"	5
+"100"	197	2014	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao, FRic, FEve"	"32"	3
+"101"	685	2014	"CHE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"FRic, FDiv, Rao"	"52"	10
+"102"	308	2014	"IND"	"T"	"TROP"	"plant"	"nonvascular"	"NA"	"terrestrial plants"	"FRic"	"99"	8
+"103"	312	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"FDiv, FRic, FEve"	"11"	8
+"104"	580	2014	"GBR
+"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao, FEve"	"NA"	11
+"105"	581	2014	"GBR
+"	"T"	"GRAS"	"plant"	"invertebrates, graminoids, forbs, shrubs, trees, nonvascular"	"arthropods"	"terrestrial plants"	"sesFDiv, sesFEve, sesFRic"	"157"	15
+"106"	151	2011	"USA"	"T"	"TEMP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"Rao"	"NA"	8
+"107"	53	2013	"FRA"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"Rao"	"25"	9
+"108"	159	2011	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"NA"	2
+"109"	416	2014	"ITA"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"FEve, Rao"	"NA"	8
+"110"	167	2013	"JPN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"sesFDiv, sesFEve, sesFRic"	"102"	8
+"111"	356	2014	"CHN"	"T"	"TROP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"FRic"	"274"	6
+"112"	357	2014	"CHN"	"T"	"TROP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"FRic, FEve, FDiv"	"274"	4
+"113"	62	2013	"ARG"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"FDiv"	"27"	6
+"114"	367	2014	"BRA"	"T"	"GRAS"	"plant"	"trees"	"NA"	"terrestrial plants"	"iFD"	"55"	10
+"115"	369	2014	"ITA"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"24"	9
+"116"	370	2014	"IDN, PAN, UGA, BRA, COD, MYS, MDG, TZA, CRI, PER"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"Rao"	"NA"	2
+"117"	378	2014	"USA"	"T"	"LAKE"	"plant"	"graminoids, forbs, trees"	"NA"	"terrestrial plants"	"FDis, FEve, FDiv"	"5"	3
+"118"	208	2011	"GBR"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs, nonvascular"	"NA"	"terrestrial plants"	"FRic, FEve, FDiv"	"148"	8
+"119"	634	2014	"CHN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FDis, FEve, FRic"	"57"	7
+"120"	338	2014	"CHN"	"T"	"TEMP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"Rao, FEq"	"120"	26
+"121"	50	2010	"FRA"	"T"	"TEMP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"Rao"	"121"	15
+"122"	506	2014	"AUS"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"sesM-NND, sesMPD, sesM-NND_beta, sesMPD_beta"	"30"	9
+"123"	418	2014	"USA"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"sesFDis"	"22"	12
+"124"	653	2014	"USA"	"T"	"TUND"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"sesFRic, sesFDis"	"107"	5
+"125"	655	2014	"USA"	"T"	"TEMP"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"FEve, FDis, FRic"	"248"	4
+"126"	564	2014	"FRA, DEU"	"T"	"TEMP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"FDis"	"30"	3
+"127"	63	2006	"USA"	"T"	"TEMP, GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"FRic"	"54"	4
+"128"	305	2006	"ESP"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"54"	9
+"129"	451	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"sesRao"	"159"	10
+"130"	471	2014	"ZWE"	"T"	"TEMP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"sesFD"	"36"	15
+"131"	498	2014	"CRI"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FD"	"215"	3
+"132"	707	2014	"PNG"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FDiv, FEve, FRic"	"90"	5
+"133"	537	2014	"ITA"	"T"	"DESE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"FDiv, FRic, FEve, Rao"	"23"	28
+"134"	739	2014	"CHN"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"FAD2, MFAD, FDp, FDc, FDiv, FDis"	"171"	10
+"135"	617	2014	"ESP"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FDis"	"120"	5
+"136"	650	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"M-NND, Rao"	"169"	11
+"137"	619	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"FRic, FD, FEve, OFRO, FDiv, Rao"	"111"	32
+"138"	570	2014	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"Rao, FRic, FEve, FDiv"	"64"	6
+"139"	573	2014	"CHN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"FDis, FDiv"	"103"	47
+"140"	188	2014	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"Rao"	"NA"	20
+"141"	380	2014	"ESP"	"T"	"GRAS"	"plant"	"nonvascular"	"NA"	"terrestrial plants"	"FDiv"	"21"	5
+"142"	603	2014	"CAF"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"Rao_alpha, Rao_beta, Rao_gamma"	"90"	6
+"143"	624	2014	"JPN"	"T"	"TEMP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"sesRao, sesFD"	"98"	14
+"144"	626	2014	"DEU"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"FD"	"8"	8
+"145"	749	2014	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"FD"	"8"	5
+"146"	433	2014	"ZAF"	"T"	"TROP"	"plant"	"invertebrates, vertebrates"	"NA"	"terrestrial plants"	"FDis"	"131"	3
+"147"	651	2014	"FRA"	"T"	"GRAS"	"plant"	"shrubs, forbs, graminoids"	"NA"	"terrestrial plants"	"FRic, FDc"	"291"	6
+"148"	689	2014	"BEL"	"T"	"AGRI"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"sesFD, sesFEve, sesFDiv"	"299"	26
+"149"	408	2014	"CHL"	"T, A"	"OTHR"	"animal"	"vertebrates"	"mammals"	"other"	"FRic, FDis, FEve"	"46"	5

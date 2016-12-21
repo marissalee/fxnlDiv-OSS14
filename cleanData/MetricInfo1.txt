@@ -1,0 +1,307 @@
+"ID"	"code"	"name"	"CAT_dimension"	"CAT_multivarMethod"	"CAT_abundance"	"year"	"region.ISO3"	"sys1"	"habitat"	"group"	"sub.group"	"animal.group"	"sys1Grp"	"Total.Number.Species"	"nTrait"
+"1"	501	"betweenSpRao"	"Between-species Rao"	"divergence"	"distance-only"	"yes"	2014	"SWE"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	3
+"2"	209	"Clust-Evenness"	"Cluster to determine FGs and then Evenness"	"evenness"	"cluster"	"yes"	2013	"HUN"	"A"	"LAKE"	"plant"	"algae"	"NA"	"aquatic plants"	"124"	7
+"3"	128	"Clust-MPD"	"Cluster to determine FGs and then MPD"	"divergence"	"cluster"	"no"	2012	"BRA"	"T"	"TROP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"162"	5
+"4"	304	"Clust-Rao"	"Cluster to get distances, then calc Rao"	"divergence"	"cluster"	"yes"	2014	"USA"	"A"	"NEAR"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"50"	28
+"5"	209	"Clust-ShannonsH"	"Cluster to determine FGs and then Shannon's H"	"richness"	"cluster"	"no"	2013	"HUN"	"A"	"LAKE"	"plant"	"algae"	"NA"	"aquatic plants"	"124"	7
+"6"	215	"EED"	"Evenness in species distinctiveness"	"evenness"	"cluster"	"yes"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"7"	333	"FAD1"	"Functional attribute diversity (FAD1)"	"divergence"	"distance-only"	"no"	2014	"NA"	"A"	"NEAR"	"animal"	"invertebrates"	"mollusks"	"aquatic animals"	"993"	5
+"8"	290	"FAD2"	"Functional attribute diversity (FAD2)"	"divergence"	"distance-only"	"no"	2002	"AUS"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"67"	5
+"9"	739	"FAD2"	"Functional attribute diversity (FAD2)"	"divergence"	"distance-only"	"no"	2014	"CHN"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"171"	10
+"10"	23	"FAD2"	"Functional attribute diversity (FAD2)"	"divergence"	"distance-only"	"no"	2010	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"99"	4
+"11"	113	"FAD2"	"Functional attribute diversity (FAD2)"	"divergence"	"distance-only"	"no"	2009	"GBR"	"A"	"NEAR"	"plant"	"algae"	"NA"	"aquatic plants"	"6"	4
+"12"	215	"FAD2"	"Functional attribute diversity (FAD2)"	"divergence"	"distance-only"	"no"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"13"	708	"Fbeta"	"Functional beta diversity or Functional dissimilarity"	"redundancy"	"ordinate"	"no"	2014	"PRT"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"648"	9
+"14"	284	"Fbeta"	"Functional beta diversity or Functional dissimilarity"	"redundancy"	"ordinate"	"no"	2013	"NA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"230"	7
+"15"	697	"Fbeta"	"Functional beta diversity or Functional dissimilarity"	"redundancy"	"ordinate"	"no"	2014	"NA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"286"	6
+"16"	298	"Fbeta_FDis"	"Functional beta diversity or Functional dissimilarity calcuated with FDis"	"redundancy"	"ordinate"	"yes"	2014	"GBR"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"105"	11
+"17"	618	"Fbeta_FDis"	"Functional beta diversity or Functional dissimilarity calcuated with FDis"	"redundancy"	"ordinate"	"yes"	2014	"SWE"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"125"	7
+"18"	427	"Fbeta_FDis"	"Functional beta diversity or Functional dissimilarity calcuated with FDis"	"redundancy"	"ordinate"	"yes"	2014	"DEU"	"T"	"GRAS"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"153"	8
+"19"	600	"Fbeta_FDis"	"Functional beta diversity or Functional dissimilarity calcuated with FDis"	"redundancy"	"ordinate"	"yes"	2014	"SWE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"235"	8
+"20"	178	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2013	"JPN"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"120"	16
+"21"	163	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2012	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"79"	9
+"22"	248	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"JPN"	"T"	"LAKE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"56"	14
+"23"	23	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2010	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"99"	4
+"24"	184	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2012	"GBR"	"T"	"NEAR"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"20"	7
+"25"	271	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2012	"NA"	"T"	"TEMP, TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"NA"	6
+"26"	349	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"SLB"	"T"	"NEAR"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	4
+"27"	266	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"FRA"	"T"	"TEMP"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"291"	6
+"28"	277	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2012	"NA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"844"	5
+"29"	215	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"30"	626	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"DEU"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"8"	8
+"31"	612	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"ARG"	"T"	"DESE"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"NA"	11
+"32"	295	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"RUS"	"A"	"PELA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"98"	8
+"33"	619	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"111"	32
+"34"	689	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"BEL"	"T"	"AGRI"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"299"	26
+"35"	66	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2013	"NA"	"T"	"OTHR"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"NA"	13
+"36"	749	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"8"	5
+"37"	57	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2009	"BRA"	"T"	"GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"NA"	3
+"38"	27	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2005	"NA"	"T"	"OTHR"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"NA"	11
+"39"	75	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2010	"FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"239"	6
+"40"	498	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"CRI"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"215"	3
+"41"	60	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2013	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"191"	8
+"42"	223	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2007	"GBR"	"T"	"NEAR, LAKE, TEMP, GRAS"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"192"	6
+"43"	91	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2006	"CIV, GUY"	"T"	"TROP"	"animal"	"vertebrates"	"herps"	"terrestrial animals"	"67"	5
+"44"	471	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"ZWE"	"T"	"TEMP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"36"	15
+"45"	624	"FD"	"Functional diversity (FD)"	"richness"	"cluster"	"no"	2014	"JPN"	"T"	"TEMP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"98"	14
+"46"	66	"FD-C"	"FD-Contribution"	"richness"	"cluster"	"no"	2013	"NA"	"T"	"OTHR"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"NA"	13
+"47"	504	"FDc"	"Community-based functional diversity (FDc)"	"richness"	"cluster"	"no"	2014	"FRA"	"T"	"LAKE"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"31"	4
+"48"	739	"FDc"	"Community-based functional diversity (FDc)"	"richness"	"cluster"	"no"	2014	"CHN"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"171"	10
+"49"	125	"FDc"	"Community-based functional diversity (FDc)"	"richness"	"cluster"	"no"	2014	"IRL, GBR, FRA, DEU, NOR, SWE, DNK, NLD, BEL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	19
+"50"	651	"FDc"	"Community-based functional diversity (FDc)"	"richness"	"cluster"	"no"	2014	"FRA"	"T"	"GRAS"	"plant"	"shrubs, forbs, graminoids"	"NA"	"terrestrial plants"	"291"	6
+"51"	68	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2013	"CAN"	"T"	"LAKE"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"96"	8
+"52"	137	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2012	"SLB"	"T"	"TROP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"394"	4
+"53"	14	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"52"	5
+"54"	102	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"SWE"	"A"	"RIPA"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"21"	5
+"55"	600	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"SWE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"235"	8
+"56"	251	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2012	"DEU"	"T"	"NEAR"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"NA"	3
+"57"	298	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"GBR"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"105"	11
+"58"	105	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2013	"AUS"	"T"	"TROP"	"plant"	"forbs"	"NA"	"terrestrial plants"	"163"	5
+"59"	427	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"DEU"	"T"	"GRAS"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"153"	8
+"60"	564	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"FRA, DEU"	"T"	"TEMP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"30"	3
+"61"	664	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"AUS"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"194"	10
+"62"	573	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"103"	47
+"63"	433	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"ZAF"	"T"	"TROP"	"plant"	"invertebrates, vertebrates"	"NA"	"terrestrial plants"	"131"	3
+"64"	250	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2013	"DEU"	"T"	"NEAR"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"105"	3
+"65"	303	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2013	"CAN"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"52"	5
+"66"	653	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"T"	"TUND"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"107"	5
+"67"	634	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"57"	7
+"68"	739	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"CHN"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"171"	10
+"69"	599	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"NZL"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"25"	10
+"70"	418	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"22"	12
+"71"	330	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"FRA"	"A"	"RIPA"	"microbes"	"diatoms"	"NA"	"other"	"NA"	2
+"72"	325	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"DEU"	"T"	"TEMP"	"microbes"	"fungi"	"NA"	"other"	"NA"	3
+"73"	625	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"CHE"	"T"	"AGRI"	"animal, plant"	"invertebrates, vertebrates, trees, shrubs, graminoids, forbs"	"NA"	"other"	"574"	4
+"74"	144	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2013	"NZL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	2
+"75"	378	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"T"	"LAKE"	"plant"	"graminoids, forbs, trees"	"NA"	"terrestrial plants"	"5"	3
+"76"	87	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"IDN"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"64"	5
+"77"	267	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2012	"USA"	"T"	"TUND"	"plant"	"forbs, shrubs"	"NA"	"terrestrial plants"	"75"	5
+"78"	617	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"ESP"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"120"	5
+"79"	655	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"248"	4
+"80"	60	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2013	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"191"	8
+"81"	419	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"SWE"	"A"	"RIPA"	"animal"	"invertebrates"	"arthropods"	"aquatic animals"	"NA"	5
+"82"	618	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"SWE"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"125"	7
+"83"	17	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"NZL, FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"54"	7
+"84"	275	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"CAN, USA"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"18"	4
+"85"	408	"FDis"	"Functional dispersion (FDis)"	"divergence"	"ordinate"	"yes"	2014	"CHL"	"T, A"	"OTHR"	"animal"	"vertebrates"	"mammals"	"other"	"46"	5
+"86"	739	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"CHN"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"171"	10
+"87"	251	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2012	"DEU"	"T"	"NEAR"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"NA"	3
+"88"	537	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"ITA"	"T"	"DESE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"23"	28
+"89"	380	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"ESP"	"T"	"GRAS"	"plant"	"nonvascular"	"NA"	"terrestrial plants"	"21"	5
+"90"	82	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2013	"CHN"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	4
+"91"	60	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2013	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"191"	8
+"92"	167	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2013	"JPN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"102"	8
+"93"	35	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2013	"FRA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"35"	13
+"94"	570	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"64"	6
+"95"	573	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"103"	47
+"96"	707	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"PNG"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"90"	5
+"97"	312	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"11"	8
+"98"	43	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2012	"BOL"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"77"	12
+"99"	535	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"BRA"	"T"	"GRAS"	"plant"	"trees"	"NA"	"terrestrial plants"	"443"	6
+"100"	641	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"530"	9
+"101"	685	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"CHE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"52"	10
+"102"	242	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2013	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"60"	18
+"103"	158	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"GBR"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	9
+"104"	581	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"GBR
+"	"T"	"GRAS"	"plant"	"invertebrates, graminoids, forbs, shrubs, trees, nonvascular"	"arthropods"	"terrestrial plants"	"157"	15
+"105"	349	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"SLB"	"T"	"NEAR"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	4
+"106"	619	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"111"	32
+"107"	378	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"T"	"LAKE"	"plant"	"graminoids, forbs, trees"	"NA"	"terrestrial plants"	"5"	3
+"108"	87	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"IDN"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"64"	5
+"109"	448	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"USA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"6"	4
+"110"	17	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"NZL, FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"54"	7
+"111"	81	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2012	"GRC"	"A"	"NEAR"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"5"	7
+"112"	618	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"SWE"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"125"	7
+"113"	357	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"274"	4
+"114"	207	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2013	"GBR"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs, nonvascular"	"NA"	"terrestrial plants"	"NA"	19
+"115"	689	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"BEL"	"T"	"AGRI"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"299"	26
+"116"	62	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2013	"ARG"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"27"	6
+"117"	421	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"CHN"	"A"	"LAKE"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"17"	16
+"118"	208	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2011	"GBR"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs, nonvascular"	"NA"	"terrestrial plants"	"148"	8
+"119"	206	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2014	"GBR"	"T"	"GRAS"	"animal, plant"	"invertebrates, graminoids, forbs"	"arthropods"	"other"	"32"	14
+"120"	20	"FDiv"	"Functional divergence (FDiv)"	"divergence"	"ordinate"	"yes"	2011	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"22"	14
+"121"	641	"FDp"	"Plot-based functional diversity (FDp)"	"richness"	"cluster"	"no"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"530"	9
+"122"	739	"FDp"	"Plot-based functional diversity (FDp)"	"richness"	"cluster"	"no"	2014	"CHN"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"171"	10
+"123"	28	"FEq"	"Functional evenness using Rao's Q"	"evenness"	"distance-only"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"130"	25
+"124"	338	"FEq"	"Functional evenness using Rao's Q"	"evenness"	"distance-only"	"yes"	2014	"CHN"	"T"	"TEMP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"120"	26
+"125"	20	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2011	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"22"	14
+"126"	378	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"USA"	"T"	"LAKE"	"plant"	"graminoids, forbs, trees"	"NA"	"terrestrial plants"	"5"	3
+"127"	253	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2012	"NA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"230"	14
+"128"	655	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"248"	4
+"129"	333	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"NA"	"A"	"NEAR"	"animal"	"invertebrates"	"mollusks"	"aquatic animals"	"993"	5
+"130"	87	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"IDN"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"64"	5
+"131"	14	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"52"	5
+"132"	208	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2011	"GBR"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs, nonvascular"	"NA"	"terrestrial plants"	"148"	8
+"133"	206	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"GBR"	"T"	"GRAS"	"animal, plant"	"invertebrates, graminoids, forbs"	"arthropods"	"other"	"32"	14
+"134"	215	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"135"	312	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"11"	8
+"136"	330	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"FRA"	"A"	"RIPA"	"microbes"	"diatoms"	"NA"	"other"	"NA"	2
+"137"	641	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"530"	9
+"138"	43	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2012	"BOL"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"77"	12
+"139"	357	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"274"	4
+"140"	580	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"GBR
+"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	11
+"141"	416	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"ITA"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	8
+"142"	17	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"NZL, FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"54"	7
+"143"	137	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2012	"SLB"	"T"	"TROP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"394"	4
+"144"	251	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2012	"DEU"	"T"	"NEAR"	"animal"	"invertebrates"	"NA"	"terrestrial animals"	"NA"	3
+"145"	408	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"CHL"	"T, A"	"OTHR"	"animal"	"vertebrates"	"mammals"	"other"	"46"	5
+"146"	207	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2013	"GBR"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs, nonvascular"	"NA"	"terrestrial plants"	"NA"	19
+"147"	421	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"CHN"	"A"	"LAKE"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"17"	16
+"148"	618	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"SWE"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"125"	7
+"149"	634	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"57"	7
+"150"	167	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2013	"JPN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"102"	8
+"151"	689	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"BEL"	"T"	"AGRI"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"299"	26
+"152"	448	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"USA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"6"	4
+"153"	619	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"111"	32
+"154"	707	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"PNG"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"90"	5
+"155"	340	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"USA"	"A"	"RIPA"	"animal"	"invertebrates"	"arthropods"	"aquatic animals"	"79"	4
+"156"	242	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2013	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"60"	18
+"157"	349	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"SLB"	"T"	"NEAR"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	4
+"158"	82	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2013	"CHN"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	4
+"159"	197	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"32"	3
+"160"	581	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"GBR
+"	"T"	"GRAS"	"plant"	"invertebrates, graminoids, forbs, shrubs, trees, nonvascular"	"arthropods"	"terrestrial plants"	"157"	15
+"161"	664	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"AUS"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"194"	10
+"162"	123	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2013	"CZE"	"T"	"GRAS"	"plant"	"forbs"	"NA"	"terrestrial plants"	"13"	4
+"163"	535	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"BRA"	"T"	"GRAS"	"plant"	"trees"	"NA"	"terrestrial plants"	"443"	6
+"164"	537	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"ITA"	"T"	"DESE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"23"	28
+"165"	570	"FEve"	"Functional evenness (FEve)"	"evenness"	"ordinate"	"yes"	2014	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"64"	6
+"166"	566	"FOR"	"Functional over-redundancy"	"redundancy"	"ordinate"	"no"	2014	"NA"	"A"	"NEAR"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"222"	6
+"167"	266	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"FRA"	"T"	"TEMP"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"291"	6
+"168"	600	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"SWE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"235"	8
+"169"	308	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"IND"	"T"	"TROP"	"plant"	"nonvascular"	"NA"	"terrestrial plants"	"99"	8
+"170"	535	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"BRA"	"T"	"GRAS"	"plant"	"trees"	"NA"	"terrestrial plants"	"443"	6
+"171"	43	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2012	"BOL"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"77"	12
+"172"	599	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"NZL"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"25"	10
+"173"	651	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"FRA"	"T"	"GRAS"	"plant"	"shrubs, forbs, graminoids"	"NA"	"terrestrial plants"	"291"	6
+"174"	14	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"52"	5
+"175"	87	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"IDN"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"64"	5
+"176"	82	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2013	"CHN"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	4
+"177"	502	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"FRA"	"T"	"GRAS"	"microbes"	"microbemix"	"NA"	"other"	"4"	3
+"178"	570	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"64"	6
+"179"	448	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"USA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"6"	4
+"180"	655	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"USA"	"T"	"TEMP"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"248"	4
+"181"	641	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"530"	9
+"182"	132	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"USA"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"46"	4
+"183"	158	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"GBR"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	9
+"184"	349	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"SLB"	"T"	"NEAR"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	4
+"185"	708	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"PRT"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"648"	9
+"186"	618	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"SWE"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"125"	7
+"187"	206	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"GBR"	"T"	"GRAS"	"animal, plant"	"invertebrates, graminoids, forbs"	"arthropods"	"other"	"32"	14
+"188"	167	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2013	"JPN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"102"	8
+"189"	595	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"FRA"	"A"	"LAKE"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"37"	10
+"190"	34	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"284"	4
+"191"	685	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"52"	10
+"192"	634	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHN"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"57"	7
+"193"	137	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2012	"SLB"	"T"	"TROP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"394"	4
+"194"	312	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"11"	8
+"195"	208	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2011	"GBR"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs, nonvascular"	"NA"	"terrestrial plants"	"148"	8
+"196"	707	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"PNG"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"90"	5
+"197"	207	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2013	"GBR"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs, nonvascular"	"NA"	"terrestrial plants"	"NA"	19
+"198"	566	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"NA"	"A"	"NEAR"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"222"	6
+"199"	537	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"ITA"	"T"	"DESE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"23"	28
+"200"	619	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"111"	32
+"201"	20	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2011	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"22"	14
+"202"	421	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHN"	"A"	"LAKE"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"17"	16
+"203"	357	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHN"	"T"	"TROP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"274"	4
+"204"	63	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2006	"USA"	"T"	"TEMP, GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"54"	4
+"205"	408	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHL"	"T, A"	"OTHR"	"animal"	"vertebrates"	"mammals"	"other"	"46"	5
+"206"	653	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"USA"	"T"	"TUND"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"107"	5
+"207"	17	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"NZL, FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"54"	7
+"208"	144	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2013	"NZL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	2
+"209"	242	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2013	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"60"	18
+"210"	356	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHN"	"T"	"TROP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"274"	6
+"211"	197	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"32"	3
+"212"	123	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2013	"CZE"	"T"	"GRAS"	"plant"	"forbs"	"NA"	"terrestrial plants"	"13"	4
+"213"	581	"FRic"	"Functional richness (FRic) also called convex hull volume"	"richness"	"ordinate"	"no"	2014	"GBR
+"	"T"	"GRAS"	"plant"	"invertebrates, graminoids, forbs, shrubs, trees, nonvascular"	"arthropods"	"terrestrial plants"	"157"	15
+"214"	81	"FRq"	"Functional redundancy using Rao"	"redundancy"	"distance-only"	"yes"	2012	"GRC"	"A"	"NEAR"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"5"	7
+"215"	87	"FSpe"	"Functional specialization (FSpe)"	"divergence"	"ordinate"	"yes"	2014	"IDN"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"64"	5
+"216"	566	"FV"	"Functional vulnerability"	"redundancy"	"ordinate"	"no"	2014	"NA"	"A"	"NEAR"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"222"	6
+"217"	215	"HED"	"Diversity in species distinctiveness"	"evenness"	"cluster"	"no"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"218"	57	"iFD"	"Individual-based functional diversity (iFD)"	"richness"	"cluster"	"no"	2009	"BRA"	"T"	"GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"NA"	3
+"219"	367	"iFD"	"Individual-based functional diversity (iFD)"	"richness"	"cluster"	"no"	2014	"BRA"	"T"	"GRAS"	"plant"	"trees"	"NA"	"terrestrial plants"	"55"	10
+"220"	44	"iFD"	"Individual-based functional diversity (iFD)"	"richness"	"cluster"	"no"	2014	"BRA"	"T"	"GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"55"	10
+"221"	381	"KSI"	"Kolmogorov-Smirnov Importance index"	"richness"	"cluster"	"no"	2014	"NA"	"T"	"OTHR"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"48324"	5
+"222"	215	"M-NND"	"Mean nearest neighbor dissimilarity"	"divergence"	"distance-only"	"no"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"223"	650	"M-NND"	"Mean nearest neighbor dissimilarity"	"divergence"	"distance-only"	"no"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"169"	11
+"224"	271	"M-NND"	"Mean nearest neighbor dissimilarity"	"divergence"	"distance-only"	"no"	2012	"NA"	"T"	"TEMP, TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"NA"	6
+"225"	35	"M-NND"	"Mean nearest neighbor dissimilarity"	"divergence"	"distance-only"	"no"	2013	"FRA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"35"	13
+"226"	641	"M-NND"	"Mean nearest neighbor dissimilarity"	"divergence"	"distance-only"	"no"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"530"	9
+"227"	123	"M-NND"	"Mean nearest neighbor dissimilarity"	"divergence"	"distance-only"	"no"	2013	"CZE"	"T"	"GRAS"	"plant"	"forbs"	"NA"	"terrestrial plants"	"13"	4
+"228"	506	"M-NND"	"Mean nearest neighbor dissimilarity"	"divergence"	"distance-only"	"no"	2014	"AUS"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"30"	9
+"229"	506	"M-NND_beta"	"M-NND beta diversity"	"divergence"	"distance-only"	"no"	2014	"AUS"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"30"	9
+"230"	215	"MFAD"	"Modified FAD2 (MFAD)"	"divergence"	"distance-only"	"no"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"231"	739	"MFAD"	"Modified FAD2 (MFAD)"	"divergence"	"distance-only"	"no"	2014	"CHN"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"171"	10
+"232"	325	"MFPD"	"Mean pairwise functional phylogenetic distance"	"divergence"	"distance-only"	"no"	2014	"DEU"	"T"	"TEMP"	"microbes"	"fungi"	"NA"	"other"	"NA"	3
+"233"	678	"MPD"	"Mean dissimilarity between species index"	"divergence"	"distance-only"	"no"	2014	"DEU"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"179"	4
+"234"	641	"MPD"	"Mean dissimilarity between species index"	"divergence"	"distance-only"	"no"	2014	"BRA"	"T"	"TROP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"530"	9
+"235"	506	"MPD"	"Mean dissimilarity between species index"	"divergence"	"distance-only"	"no"	2014	"AUS"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"30"	9
+"236"	123	"MPD"	"Mean dissimilarity between species index"	"divergence"	"distance-only"	"no"	2013	"CZE"	"T"	"GRAS"	"plant"	"forbs"	"NA"	"terrestrial plants"	"13"	4
+"237"	645	"MPD"	"Mean dissimilarity between species index"	"divergence"	"distance-only"	"no"	2014	"BRA"	"T"	"TROP"	"animal"	"vertebrates"	"mammals, birds"	"terrestrial animals"	"2096"	6
+"238"	568	"MPD"	"Mean dissimilarity between species index"	"divergence"	"distance-only"	"no"	2014	"DEU"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"231"	7
+"239"	271	"MPD"	"Mean dissimilarity between species index"	"divergence"	"distance-only"	"no"	2012	"NA"	"T"	"TEMP, TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"NA"	6
+"240"	506	"MPD_beta"	"MPD beta diversity"	"divergence"	"distance-only"	"no"	2014	"AUS"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"30"	9
+"241"	235	"MPDTw"	"Functional alpha diversity"	"divergence"	"ordinate"	"no"	2013	"SWE"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"234"	11
+"242"	235	"MPDTw_beta"	"Functional beta diversity"	"divergence"	"ordinate"	"no"	2013	"SWE"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"234"	11
+"243"	619	"OFRO"	"Overall functional regularity"	"evenness"	"distance-only"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"111"	32
+"244"	385	"PEI"	"Phylogenetic entropy index"	"divergence"	"cluster"	"yes"	2014	"SLB"	"A"	"PELA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"73"	6
+"245"	690	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"PRT"	"A"	"LAKE"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"27"	5
+"246"	590	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"FRA"	"T"	"AGRI"	"animal"	"invertebrates"	"annelids"	"terrestrial animals"	"11"	7
+"247"	72	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2009	"ESP"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"8"	9
+"248"	253	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2012	"NA"	"A"	"RIPA"	"animal"	"vertebrates"	"fish"	"aquatic animals"	"230"	14
+"249"	580	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"GBR
+"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	11
+"250"	370	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"IDN, PAN, UGA, BRA, COD, MYS, MDG, TZA, CRI, PER"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"NA"	2
+"251"	369	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"ITA"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"24"	9
+"252"	501	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"SWE"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	3
+"253"	55	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2011	"ARG"	"T"	"GRAS"	"plant"	"shrubs, forbs, graminoids, trees"	"NA"	"terrestrial plants"	"67"	15
+"254"	340	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"USA"	"A"	"RIPA"	"animal"	"invertebrates"	"arthropods"	"aquatic animals"	"79"	4
+"255"	297	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2010	"GBR"	"T"	"AGRI"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"42"	10
+"256"	421	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"CHN"	"A"	"LAKE"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"17"	16
+"257"	361	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"FRA"	"T"	"TEMP"	"animal"	"vertebrates"	"birds"	"terrestrial animals"	"NA"	6
+"258"	188	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	20
+"259"	242	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2013	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"60"	18
+"260"	305	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2006	"ESP"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"54"	9
+"261"	451	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"159"	10
+"262"	125	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"IRL, GBR, FRA, DEU, NOR, SWE, DNK, NLD, BEL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	19
+"263"	42	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2012	"ESP"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"4"	8
+"264"	19	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2013	"FRA"	"T"	"GRAS"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	7
+"265"	53	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2013	"FRA"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"25"	9
+"266"	40	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2013	"ITA"	"T"	"NEAR"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	16
+"267"	627	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"DEU"	"T"	"TEMP"	"animal"	"invertebrates"	"arthropods"	"terrestrial animals"	"122"	5
+"268"	159	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2011	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	2
+"269"	330	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"FRA"	"A"	"RIPA"	"microbes"	"diatoms"	"NA"	"other"	"NA"	2
+"270"	197	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"CHN"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"32"	3
+"271"	624	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"JPN"	"T"	"TEMP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"98"	14
+"272"	198	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2013	"USA"	"T"	"TEMP"	"plant"	"trees"	"NA"	"terrestrial plants"	"45"	4
+"273"	619	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"111"	32
+"274"	215	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"275"	50	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2010	"FRA"	"T"	"TEMP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"121"	15
+"276"	685	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"CHE"	"T"	"AGRI"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"52"	10
+"277"	502	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"FRA"	"T"	"GRAS"	"microbes"	"microbemix"	"NA"	"other"	"4"	3
+"278"	612	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"ARG"	"T"	"DESE"	"animal"	"vertebrates"	"mammals"	"terrestrial animals"	"NA"	11
+"279"	552	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"GER"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	10
+"280"	249	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2008	"DEU"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"31"	6
+"281"	338	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"CHN"	"T"	"TEMP"	"plant"	"shrubs, trees"	"NA"	"terrestrial plants"	"120"	26
+"282"	248	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"JPN"	"T"	"LAKE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"56"	14
+"283"	147	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2012	"CHN"	"T"	"GRAS"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"55"	12
+"284"	151	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2011	"USA"	"T"	"TEMP"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	8
+"285"	570	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"64"	6
+"286"	28	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"130"	25
+"287"	343	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"GBR"	"A"	"NEAR"	"animal"	"invertebrates"	"NA"	"aquatic animals"	"67"	8
+"288"	537	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"ITA"	"T"	"DESE"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"23"	28
+"289"	12	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2013	"CAN"	"T"	"TAIG"	"animal, plant"	"shrubs, forbs, graminoids"	"NA"	"other"	"NA"	23
+"290"	416	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"ITA"	"T"	"AGRI"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	8
+"291"	650	"Rao"	"Quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"USA"	"T"	"TEMP"	"plant"	"trees, shrubs, graminoids, forbs"	"NA"	"terrestrial plants"	"169"	11
+"292"	603	"Rao_alpha"	"Alpha diversity partion of Rao"	"divergence"	"distance-only"	"yes"	2014	"CAF"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"90"	6
+"293"	603	"Rao_beta"	"Beta diversity partion of Rao"	"divergence"	"distance-only"	"yes"	2014	"CAF"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"90"	6
+"294"	603	"Rao_gamma"	"Gamma diversity partion of Rao"	"divergence"	"distance-only"	"yes"	2014	"CAF"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"90"	6
+"295"	215	"RaoB"	"Balance factor derived from Rao"	"evenness"	"distance-only"	"yes"	2013	"DZA"	"A"	"NEAR"	"plant"	"graminoids, forbs"	"NA"	"aquatic plants"	"46"	9
+"296"	125	"RaoR"	"Relative quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"IRL, GBR, FRA, DEU, NOR, SWE, DNK, NLD, BEL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	19
+"297"	28	"RaoR"	"Relative quadratic entropy"	"divergence"	"distance-only"	"yes"	2014	"CHN"	"T"	"TROP"	"plant"	"trees, shrubs"	"NA"	"terrestrial plants"	"130"	25
+"298"	123	"SD-NND"	"SD of the nearest-neighbor distance"	"divergence"	"distance-only"	"no"	2013	"CZE"	"T"	"GRAS"	"plant"	"forbs"	"NA"	"terrestrial plants"	"13"	4
+"299"	163	"wFDc"	"Abundance-weighted FDc"	"divergence"	"cluster"	"yes"	2012	"MEX"	"T"	"TROP"	"plant"	"trees"	"NA"	"terrestrial plants"	"79"	9
+"300"	125	"wFDc"	"Abundance-weighted FDc"	"divergence"	"cluster"	"yes"	2014	"IRL, GBR, FRA, DEU, NOR, SWE, DNK, NLD, BEL"	"T"	"GRAS"	"plant"	"graminoids, forbs, shrubs"	"NA"	"terrestrial plants"	"NA"	19
+"301"	501	"withinSpRao"	"Within-species Rao"	"divergence"	"distance-only"	"yes"	2014	"SWE"	"T"	"GRAS"	"plant"	"graminoids, forbs"	"NA"	"terrestrial plants"	"NA"	3

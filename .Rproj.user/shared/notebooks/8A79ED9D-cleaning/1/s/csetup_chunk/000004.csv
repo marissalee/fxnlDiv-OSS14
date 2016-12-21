@@ -1,0 +1,5 @@
+"0","library(splitstackshape) #for cSplit()
+"
+"2","Error in library(splitstackshape) : 
+  there is no package called ‘splitstackshape’
+"

@@ -1,0 +1,976 @@
+---
+title: 'Results: Systematic review of how we measure functional diversity (FD)'
+author: "Marissa Lee"
+date: "July 29, 2015"
+output: 
+  pdf_document: 
+    number_sections: yes
+    toc: yes
+    toc_depth: 4
+---
+
+
+
+
+Set up the markdown cache, set your working directory, and load the libraries. 
+```{r setup,echo=FALSE, warning=FALSE, message=FALSE}
+#set markdown cache so that it doesn't take forever to build the final pdf
+knitr::opts_chunk$set(cache=TRUE)
+
+#set working directory
+#setwd("~/Desktop/wd_functionalDiv")
+
+#load libraries
+library(splitstackshape) #for cSplit()
+library(plyr) 
+library(doBy)
+library(ggplot2)
+
+#To cite R and packages...
+# citation()
+# if(nchar(system.file(package="splitstackshape"))) citation("splitstackshape")
+# if(nchar(system.file(package="plyr"))) citation("plyr")
+# if(nchar(system.file(package="doBy"))) citation("doBy")
+# if(nchar(system.file(package="ggplot2"))) citation("ggplot2")
+
+#load custom functions
+source("code/fxn_ExpandMelt.R")
+```
+Read-in data
+```{r readin,echo=FALSE}
+#read data
+Study.Info.1<-read.delim("cleanData/StudyInfo1.txt", sep="\t", header = TRUE)
+Trait.Info.1<-read.delim("cleanData/TraitInfo1.txt", sep="\t", header = TRUE)
+Metric.Info.1<-read.delim("cleanData/MetricInfo1.txt", sep="\t", header = TRUE)
+
+#load theme
+source("code/mytheme.R")
+```
+
+
+# Basic information about the dataset
+```{r basic, echo=FALSE, warning=FALSE}
+#how many studies?
+totalNumStudies<-length(unique(Study.Info.1$ID))
+paste(totalNumStudies, 'accepted studies in the dataset') # 152 good
+
+#does this match with the other datasets?
+length(unique(Trait.Info.1$ID)) # 152 good
+length(unique(Metric.Info.1$ID)) # only 149... why is that??
+#which IDs are missing from Metric.Info?
+unique(Study.Info.1$ID)[!unique(Study.Info.1$ID) %in% unique(Metric.Info.1$ID)]
+
+
+#how many of those studies were published in 2014, the most recent year included in this dataset?
+summ.SI.yr <- ddply(Study.Info.1,~year, summarise, nID=length(unique(ID))) 
+numStudies2014<-summ.SI.yr[summ.SI.yr$year==2014,'nID']
+perc_2014<-round((numStudies2014/totalNumStudies)*100, digits=2)
+paste(perc_2014, "% of studies were published last year")
+```  
+There are `r totalNumStudies` accepted studies in the dataset. In the most recent year, 2014, `r numStudies2014` were published, which is `r perc_2014` % of the total dataset.  
+
+
+
+# What types of locations, ecosystems, and taxa have been the focus of FD calculations?
+
+## Countries
+The top 5 countries that produce these FD studies are, in decreasing order,
+```{r Q1_countries,echo=FALSE, warning=FALSE}
+df.iso<-ExpandMelt(df=Study.Info.1, varName='region.ISO3')
+summ.SI.iso <- ddply(df.iso,~region.ISO3, summarise, nID=length(unique(ID))) 
+summ.SI.iso.o<-orderBy(~-nID, summ.SI.iso)
+summ.SI.iso.o1<-summ.SI.iso.o[1:5,] #take only the top 10 countries
+positions<-summ.SI.iso.o1$region.ISO3
+Plot.iso<-ggplot(summ.SI.iso.o1, aes(x=region.ISO3, y=nID)) + 
+  geom_bar(stat='identity') + 
+  ylab('Count') + xlab('Top 10 Countries') +
+  scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits=positions) + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle=45, hjust=1))
+#Plot.iso
+#positions
+```  
+`r positions`.
+
+## Terrestrial/Aquatic
+```{r Q1_sys1,echo=FALSE, warning=FALSE}
+#sys1
+df.sys1<-ExpandMelt(df=Study.Info.1, varName='sys1')
+summ.SI.sys1 <- ddply(df.sys1,~ID, summarise, 
+              presenceA=sum(sys1=='A'),
+              presenceT=sum(sys1=='T')) 
+studiesWithA<-sum(summ.SI.sys1$presenceA==1)
+studiesWithT<-sum(summ.SI.sys1$presenceT==1)
+totalNumStudies<-length(summ.SI.sys1$ID)
+studiesWithBoth<-sum(summ.SI.sys1$presenceA==1 & summ.SI.sys1$presenceT==1)
+perc_terrestrial<-round((studiesWithT/totalNumStudies)*100, digits=2)
+#paste(perc_terrestrial, "% of studies are terrestrial")
+
+#terrestrial plants?
+summ.SI.sys1Grp <- ddply(Study.Info.1,~sys1Grp, summarise, nID=length(unique(ID))) 
+
+studiesWithTrPl<-summ.SI.sys1Grp[summ.SI.sys1Grp$sys1Grp=='terrestrial plants','nID']
+perc_TrPl<-round((studiesWithTrPl/totalNumStudies)*100, digits=2)
+#paste(perc_TrPl, "% of studies are terrestrial plants")
+Plot.numStudies.sys1Grp<-ggplot(summ.SI.sys1Grp, aes(x=sys1Grp, y=nID, fill=sys1Grp)) + 
+  geom_bar(stat='identity') + ylab("Number of studies") +
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  scale_fill_manual(name='System and Taxa',
+                    labels=sys1Grp_labels,
+                    values=sys1Grp_colors) +
+  guides(fill=FALSE)
+#Plot.numStudies.sys1Grp
+
+summ.SI.sys1Grp
+```  
+The majority of studies include terrestial systems, which make up `r perc_terrestrial` %.  Of the studies that look at terrestrial systems, `r studiesWithTrPl` studies or `r perc_TrPl`% of the full dataset specifically measure the FD of terrestrial plants.
+
+The number of studies published on FD has dramatically increased over time and, in the past few years, more studies have focused on aquatic systems and have included multiple systems/taxa (other). *Are there really no aquatic studies in our dataset before 2009???*   
+```{r Q1_sys1Grp_time, echo=FALSE, warning=FALSE}
+summ.SI.yr.sys1Grp<-ddply(Study.Info.1,~year, summarize,
+      AqAn = sum(sys1Grp=='aquatic animals'),
+      AqPl = sum(sys1Grp=='aquatic plants'),
+      TrAn = sum(sys1Grp=='terrestrial animals'),
+      TrPl = sum(sys1Grp=='terrestrial plants'),
+      Other = sum(!sys1Grp %in% c('aquatic animals','aquatic plants','terrestrial animals','terrestrial plants')))
+summ.SI.yr.sys1Grp.long<- melt(summ.SI.yr.sys1Grp, id='year') 
+summ.SI.yr.sys1Grp.long$variable<-factor(summ.SI.yr.sys1Grp.long$variable, levels=c('TrPl','TrAn','AqPl','AqAn','Other'))
+Plot.numStudies.sys1Grp.yr<-ggplot(summ.SI.yr.sys1Grp.long, aes(x=year, y=value, fill=variable)) + 
+  geom_bar(stat='identity') + 
+  ylab('Number of studies') + xlab('Year') +
+  scale_y_continuous(expand=c(0,0), limits=c(0,100)) + 
+  scale_x_continuous(breaks=seq(1990, 2014, by=2)) +
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  scale_fill_manual(name='System and Taxa',
+                    labels=sys1Grp_labels,
+                    values=sys1Grp_colors)
+Plot.numStudies.sys1Grp.yr
+``` 
+
+## Habitat
+Grasslands are the most commonly-studied habitats and are included in
+```{r Q1_habitat, echo=FALSE, warning=FALSE, include=FALSE}
+
+### look at strictly 'habitat' ###
+
+df.habitat<-ExpandMelt(df=Study.Info.1, varName='habitat')
+#unique(df.habitat$habitat)
+summ.SI.hab <- ddply(df.habitat,~ID, summarise, 
+              TAIG=sum(habitat=='TAIG'),
+              TROP=sum(habitat=='TROP'),
+              TEMP=sum(habitat=='TEMP'),
+              GRAS=sum(habitat=='GRAS'),
+              RIPA=sum(habitat=='RIPA'),
+              NEAR=sum(habitat=='NEAR'),
+              AGRI=sum(habitat=='AGRI'),
+              LAKE=sum(habitat=='LAKE'),
+              TUND=sum(habitat=='TUND'),
+              PELA=sum(habitat=='PELA'),
+              DESE=sum(habitat=='DESE'))
+numStudiesPresent<-apply(summ.SI.hab, 2, sum)[-1]
+habitatName<-names(numStudiesPresent)
+#habitatName
+#habitat_labels
+
+summ.SI.habitat<-data.frame(habitatName, numStudiesPresent, habitat_labels)
+
+#define sys1 manually for each habitat
+sys1.manual_levels<-c('Terrestrial','Aquatic')
+#aquaticEco
+summ.SI.habitat$sys1.manual<-'Terrestrial'
+summ.SI.habitat[summ.SI.habitat$habitat_labels %in% aquaticEco,'sys1.manual']<-'Aquatic'
+summ.SI.habitat$sys1.manual<-factor(summ.SI.habitat$sys1.manual, levels=sys1.manual_levels)
+summ.SI.habitat.o<-orderBy(~sys1.manual-numStudiesPresent, summ.SI.habitat)
+
+#plot
+positions<-summ.SI.habitat.o$habitat_labels
+Plot.habitat.sys1<-ggplot(summ.SI.habitat.o, aes(x=habitat_labels, y=numStudiesPresent, fill=sys1.manual)) + 
+  geom_bar(stat='identity') + 
+  ylab('# of studies') + xlab('Ecosystem') +
+  scale_y_continuous(expand=c(0,0), limits=c(0,40)) + 
+  scale_x_discrete(limits= positions) + 
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  scale_fill_manual(name='System',
+                    label=c('Terrestrial','Aquatic'),
+                    values=c('#008000','#1F497D'))
+Plot.habitat.sys1
+
+
+### look at habitat x sys1Grp ###
+#quick index of sys1Grp by ID
+id_sys1Grp<-data.frame(ID=Study.Info.1$ID, sys1Grp=Study.Info.1$sys1Grp)
+summ.SI.hab1<-merge(summ.SI.hab, id_sys1Grp, by="ID")
+summ.SI.hab1.sys1Grp<-ddply(summ.SI.hab1,~sys1Grp, summarize,
+                    TAIG=sum(TAIG==1),
+                    TROP=sum(TROP==1),
+                    TEMP=sum(TEMP==1),
+                    GRAS=sum(GRAS==1),
+                    RIPA=sum(RIPA==1),
+                    NEAR=sum(NEAR==1),
+                    AGRI=sum(AGRI==1),
+                    LAKE=sum(LAKE==1),
+                    TUND=sum(TUND==1),
+                    PELA=sum(PELA==1),
+                    DESE=sum(DESE==1))
+summ.SI.hab1.sys1Grp.long<- melt(summ.SI.hab1.sys1Grp, id=c('sys1Grp'))
+setnames(summ.SI.hab1.sys1Grp.long, 'variable', 'habCode')
+habCode<-summ.SI.habitat.o$habitatName
+habName<-summ.SI.habitat.o$habitat_labels
+habindex<-data.frame(habCode, habName)
+summ.SI.hab1.sys1Grp.long1<-merge(summ.SI.hab1.sys1Grp.long, habindex)
+
+#plot
+Plot.habitat.sys1Grp<-ggplot(summ.SI.hab1.sys1Grp.long1, aes(x=habName, y=value, fill=sys1Grp)) + 
+  geom_bar(stat='identity') + 
+  scale_y_continuous(expand=c(0,0), limits=c(0,40)) + 
+  ylab('# of studies') + xlab('Ecosystem') + scale_x_discrete(limits= positions) + 
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  scale_fill_manual(name='System and Taxa',
+                    labels=c('Terrestrial plants','Terrestrial animals',
+                             'Aquatic plants','Aquatic animals','Other'),
+                    values=c('#008000','#329932',
+                             '#1F497D','#4b6d97','#D72027'))
+
+Plot.habitat.sys1Grp
+
+#percent of studies that include grasslands?
+perc_grassland<-round((summ.SI.habitat[summ.SI.habitat$habitatName=='GRAS','numStudiesPresent']/totalNumStudies)*100, digits=2)
+#paste(perc_grassland, "% of studies are in grasslands")
+```
+`r perc_grassland` % of studies in our dataset. For aquatic systems, coastal regions are studied most frequently.  Check out the imbedded code chunk for more detail.
+
+
+## Taxa
+Not surprisingly, plants are the most highly-studied type of organism.
+```{r Q1_taxa,echo=FALSE, warning=FALSE, message=FALSE}
+df.subgroup<-ExpandMelt(df=Study.Info.1, varName='sub.group')
+#unique(df.subgroup$sub.group)
+#unique(df.subgroup$sys1)        
+summ.SI.subgroup <- ddply(df.subgroup,~sys1+ID, summarise, 
+              shrubs=sum(sub.group=='shrubs'),
+              invertebrates=sum(sub.group=='invertebrates'),
+              vertebrates=sum(sub.group=='vertebrates'),
+              trees=sum(sub.group=='trees'),
+              graminoids=sum(sub.group=='graminoids'),
+              forbs=sum(sub.group=='forbs'),
+              algae=sum(sub.group=='algae'),
+              nonvascular=sum(sub.group=='nonvascular'),
+              fungi=sum(sub.group=='fungi'),
+              diatoms=sum(sub.group=='diatoms'),
+              microbemix=sum(sub.group=='microbemix'))
+summ.SI.subgroup2<-ddply(summ.SI.subgroup, ~sys1, summarize,
+             Nshrubs=sum(shrubs==1),
+             Ninvertebrates=sum(invertebrates==1),
+             Nvertebrates=sum(vertebrates==1),
+             Ntrees=sum(trees==1),
+             Ngraminoids=sum(graminoids==1),
+             Nforbs=sum(forbs==1),
+             Nalgae=sum(algae==1),
+             Nnonvascular=sum(nonvascular==1),
+             Nfungi=sum(fungi==1),
+             Ndiatoms=sum(diatoms==1),
+             Nmicrobemix=sum(microbemix==1))
+summ.SI.subgroup2.melted<- melt(summ.SI.subgroup2, id=c('sys1')) 
+setnames(summ.SI.subgroup2.melted, 'value','numStudiesPresent')
+
+#subgroup_labels
+sub.groupName<-rep(subgroup_labels, each=length(unique(df.subgroup$sys1)))
+summ.SI.subgroup1<-data.frame(summ.SI.subgroup2.melted,sub.groupName)
+
+#identify the group to which each sub.group belongs
+summ.SI.subgroup1$group.manual<-NA
+#plantGroup_labels
+#microbeGroup_labels
+#animalGroup_labels
+summ.SI.subgroup1[summ.SI.subgroup1$sub.groupName %in% plantGroup_labels,'group.manual']<-'plants'
+summ.SI.subgroup1[summ.SI.subgroup1$sub.groupName %in% microbeGroup_labels,'group.manual']<-'microbes'
+summ.SI.subgroup1[summ.SI.subgroup1$sub.groupName %in% animalGroup_labels,'group.manual']<-'animals'
+
+#replace 'animals' with animal.groups
+summ.SI.subgroup1<-summ.SI.subgroup1[summ.SI.subgroup1$group.manual !='animals',] #remove animals from current 
+df.animalgroup<-ExpandMelt(df=Study.Info.1, varName='animal.group') #count number of animal studies
+#unique(df.animalgroup$animal.group)
+summ.SI.animalgroup <- ddply(df.animalgroup,~sys1+ID, summarise, 
+              arthropods=sum(animal.group=='arthropods'),
+              birds=sum(animal.group=='birds'),
+              mammals=sum(animal.group=='mammals'),
+              fish=sum(animal.group=='fish'),
+              herps=sum(animal.group=='herps'),
+              mollusks=sum(animal.group=='mollusks'),
+              annelids=sum(animal.group=='annelids'))
+summ.SI.animalgroup2<-ddply(summ.SI.animalgroup , ~sys1, summarize,
+             Narthropods=sum(arthropods==1),
+             Nbirds=sum(birds==1),
+             Nmammals=sum(mammals==1),
+             Nfish=sum(fish==1),
+             Nherps=sum(herps==1),
+             Nmollusks=sum(mollusks==1),
+             Nannelids=sum(annelids==1))
+summ.SI.animalgroup2.melted<- melt(summ.SI.animalgroup2, id=c('sys1')) 
+setnames(summ.SI.animalgroup2.melted, 'value','numStudiesPresent')
+#animalSubGroup_labels
+sub.groupName<-rep(animalSubGroup_labels, each=length(unique(df.subgroup$sys1)))
+summ.SI.animalgroup1<-data.frame(summ.SI.animalgroup2.melted,sub.groupName)
+
+#identify the vert/invert to which each animal.group belongs
+summ.SI.animalgroup1$group.manual<-NA
+#vertGroup_labels
+#invertGroup_labels
+summ.SI.animalgroup1[summ.SI.animalgroup1$sub.groupName %in% vertGroup_labels,'group.manual']<-'vertebrates'
+summ.SI.animalgroup1[summ.SI.animalgroup1$sub.groupName %in% invertGroup_labels,'group.manual']<-'invertebrates'
+
+#merge summ.subgroup and summ.animalgroup
+#colnames(summ.subgroup); colnames(summ.animalgroup)
+summ.group<-rbind(summ.SI.subgroup1, summ.SI.animalgroup1)
+#group.manual_labels
+summ.group$group.manual<-factor(summ.group$group.manual, levels = group.manual_labels)
+summ.group.o<-orderBy(~group.manual-numStudiesPresent,summ.group)
+positionsGRP<-list(plants=plantGroup_labels.o,
+                   inverts=invertGroup_labels.o,
+                   verts=vertGroup_labels.o,
+                   microbes=microbeGroup_labels.o)
+
+#plot
+GRP<-unique(summ.group.o$group.manual)
+Plots.group<-list()
+i<-0
+for(i in 1:length(GRP)){
+  sub.df<-subset(summ.group.o, group.manual==GRP[i])
+  positions<-positionsGRP[[i]]
+  Plots.group[[i]]<-ggplot(sub.df, aes(x=sub.groupName, 
+                                          y=numStudiesPresent, 
+                                          fill=sys1)) + 
+    geom_bar(stat='identity') + 
+    ylab('# of studies') + xlab('') +
+    scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits= positions) +
+    scale_fill_manual(name='System',
+                    labels=c('Aquatic','Terrestrial','Both'),
+                    values=c('#1F497D','#008000','#D72027')) +
+    guides(fill=FALSE)+
+    theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1))
+}
+names(Plots.group)<-GRP
+
+Plot.plants<-Plots.group[['plants']]+ggtitle('Plants')+scale_y_continuous(expand=c(0,0), limits=c(0,65))
+Plot.microbes<-Plots.group[['microbes']]+ggtitle('Microbes')+scale_y_continuous(expand=c(0,0), limits=c(0,2.1))
+Plot.inverts<-Plots.group[['invertebrates']]+ggtitle('Invertebrates')+scale_y_continuous(expand=c(0,0), limits=c(0,18))
+Plot.verts<-Plots.group[['vertebrates']]+ggtitle('Vertebrates')+scale_y_continuous(expand=c(0,0), limits=c(0,12))
+```
+Among plants, understory plant groups such as forbs and grasses are most commonly studied. Among vertebrates, fish are the most commonly studied taxa, followed by birds.   
+```{r Q1_taxa_plots,echo=FALSE, warning=FALSE, message=FALSE}
+#Plot.plants
+#Plot.verts
+```   
+
+
+
+# What are the different ways that FD has been measured?
+
+## Number of species
+```{r Q2_numSpp_1, echo=FALSE, warning=FALSE}
+#prep column
+Study.Info.1$Total.Number.Species<-as.character(Study.Info.1$Total.Number.Species)
+Study.Info.1$Total.Number.Species<-as.numeric(Study.Info.1$Total.Number.Species) #ok - these 
+#order data and remove outliers
+df.o<-orderBy(~-Total.Number.Species, Study.Info.1)
+outliers<-df.o[1:2,'Total.Number.Species'] #there are 2 crazy outliers with >1000 species
+numSp.df<-df.o[df.o$Total.Number.Species <1000 & !is.na(df.o$Total.Number.Species),]
+#calc medians
+summ.SI.numSp.sys1Grp <- ddply(numSp.df,~sys1Grp, summarise,
+                    n=length(unique(ID)),
+                    med=median(Total.Number.Species, na.rm=T),
+                    min=min(Total.Number.Species, na.rm=T),
+                    max=max(Total.Number.Species, na.rm=T))
+#summ.SI.numSp.sys1Grp
+medianSp<-median(numSp.df$Total.Number.Species, na.rm = T)
+paste('Median =', medianSp)
+
+#hist colored by system and taxa
+numSp.df1<-subset(numSp.df, sys1Grp != 'other')
+Plot.numSpecies.sys1Grp<-ggplot(numSp.df1, aes(x = Total.Number.Species, fill=sys1Grp))+
+  geom_histogram(binwidth = 30)+
+  facet_wrap(~sys1Grp, ncol=2, scales='free_y')+
+  xlab("Number of species")+
+  ylab("Number of studies") + theme_bw() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
+  scale_fill_manual(name='System and Taxa',
+                    labels=c(sys1Grp_labels),
+                    values=c(sys1Grp_colors)) +
+  geom_vline(xintercept=medianSp, col=1, linetype=2) +
+  guides(fill=FALSE)
+#Plot.numSpecies.sys1Grp
+```  
+Overall, each study looks at about `r medianSp` species (median value). There were two studies with >1000 species -- these were excluded from the calculation of the median number of species per study and the plot.
+
+## Traits
+Traits were classified into 14 trait categories that generalize ways in which a trait might describe the functioning of an organism in an ecosystem.  
+```{r Q2_traits_1,echo=FALSE, warning=FALSE}
+trCatcode<-paste('cat', seq(1:15), sep="")
+trCatIndex<-data.frame(trCatcode, trCat=unique(Trait.Info.1$Trait.Category.New))
+summ.TI.cat <- ddply(Trait.Info.1,~ID, summarise, 
+              cat1=sum(Trait.Category.New==trCatIndex[1,'trCat']),
+              cat2=sum(Trait.Category.New==trCatIndex[2,'trCat']),
+              cat3=sum(Trait.Category.New==trCatIndex[3,'trCat']),
+              cat4=sum(Trait.Category.New==trCatIndex[4,'trCat']),
+              cat5=sum(Trait.Category.New==trCatIndex[5,'trCat']),
+              cat6=sum(Trait.Category.New==trCatIndex[6,'trCat']),
+              cat7=sum(Trait.Category.New==trCatIndex[7,'trCat']),
+              cat8=sum(Trait.Category.New==trCatIndex[8,'trCat']),
+              cat9=sum(Trait.Category.New==trCatIndex[9,'trCat']),
+              cat10=sum(Trait.Category.New==trCatIndex[10,'trCat']),
+              cat11=sum(Trait.Category.New==trCatIndex[11,'trCat']),
+              cat12=sum(Trait.Category.New==trCatIndex[12,'trCat']),
+              cat13=sum(Trait.Category.New==trCatIndex[13,'trCat']),
+              cat14=sum(Trait.Category.New==trCatIndex[14,'trCat']),
+              cat15=sum(Trait.Category.New==trCatIndex[15,'trCat'])
+              )
+summ.TI.cat1<-melt(summ.TI.cat, id.vars = 'ID')
+setnames(summ.TI.cat1, 'variable','trCatcode')
+setnames(summ.TI.cat1, 'value','numTr')
+summ.TI.cat1$catPresent<-summ.TI.cat1$numTr !=0
+summ.TI.cat2<-merge(summ.TI.cat1, trCatIndex, by='trCatcode')
+summ.TI.cat3<-ddply(summ.TI.cat2, ~trCat, summarize, nID=length(catPresent[catPresent=='TRUE']))
+summ.TI.cat3.o<-orderBy(~-nID, summ.TI.cat3)
+positions<-summ.TI.cat3.o$trCat
+
+#plot
+Plot.traitCat<-ggplot(summ.TI.cat3.o, aes(x=trCat, y=nID)) + 
+  geom_bar(stat='identity') + 
+  ylab('Number of studies') + xlab('Trait category') +
+  scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits= positions) + 
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1))
+Plot.traitCat
+
+
+#by sys1Grp
+summ.TI.cat2.1<-merge(summ.TI.cat2, id_sys1Grp)
+summ.TI.cat3.1<-ddply(summ.TI.cat2.1, ~sys1Grp+trCat, summarize,
+             nID=length(catPresent[catPresent=='TRUE']))
+summ.TI.cat3.1.o<-orderBy(~sys1Grp-nID, summ.TI.cat3.1)
+summ.TI.cat3.1.o$trCat<-factor(summ.TI.cat3.1.o$trCat, levels=positions)
+
+#plot
+Plot.traitCat.sys1Grp<-ggplot(summ.TI.cat3.1.o, aes(x=trCat, y=nID, fill=sys1Grp)) + 
+  geom_bar(stat='identity') +
+  ylab('Number of studies') + xlab('Trait category') +
+  scale_y_continuous(expand=c(0,0)) +theme_bw() + 
+  theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  scale_fill_manual(name='System and Taxa',
+                    labels=c(sys1Grp_labels),
+                    values=c(sys1Grp_colors))
+#Plot.traitCat.sys1Grp
+
+#plot in facets
+summ.TI.cat3.1.o.1<-subset(summ.TI.cat3.1.o, sys1Grp != 'other')
+Plot.traitCat.sys1Grp2<-ggplot(summ.TI.cat3.1.o.1, aes(x=trCat, y=nID, fill=sys1Grp)) + 
+  geom_bar(stat='identity') + facet_wrap(~sys1Grp, ncol=2, scale='free_y')+
+  ylab('# of studies') + xlab('Trait category') +
+  scale_y_continuous(expand=c(0,0)) + theme_bw() + 
+  theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  scale_fill_manual(name='System and Taxa',
+                    labels=c(sys1Grp_labels),
+                    values=c(sys1Grp_colors)) +
+  guides(fill=FALSE)
+#Plot.traitCat.sys1Grp2
+```  
+The top five trait categories that are represented in this dataset are (1) body size, (2) growth allocation, (3) resource use, (4) reproduction, and (5) temporal partioning.
+
+```{r Q2_traits_2,echo=FALSE, warning=FALSE}
+summ.TI.tr <- ddply(Trait.Info.1,~Trait.Category.New+Trait.Name, summarise, 
+              nID=length(unique(ID)))
+summ.TI.tr.o<-orderBy(~-nID, summ.TI.tr)
+summ.TI.tr.o1<-summ.TI.tr.o[summ.TI.tr.o$nID >= 5,] #only include traits that show up in 5 or more studies
+
+#plot
+CAT<-unique(summ.TI.tr.o1$Trait.Category.New)
+Plots.trait<-list()
+i<-0
+for(i in 1:length(CAT)){
+  tmp.df<-subset(summ.TI.tr.o1, Trait.Category.New == CAT[i])
+  positions<-tmp.df$Trait.Name
+  Plots.trait[[i]]<-ggplot(tmp.df, aes(x=Trait.Name, y=nID)) + geom_bar(stat='identity') + 
+    ylab('Number of studies') + xlab('Trait name') +
+    scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits= positions) + 
+    theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1)) + ggtitle(CAT[i])
+}
+names(Plots.trait)<-CAT
+
+#Plots.trait[['growth allocation']] + ggtitle('Growth allocation')
+#Plots.trait[['body size']] + ggtitle('Body size')
+#Plots.trait[['resource use']] + ggtitle('Resource use')
+#Plots.trait[['reproduction']] + ggtitle('Reproduction')
+#Plots.trait[['temporal partitioning']]
+#Plots.trait[['unclassified']]
+
+#habitat trait examples
+justHabitat<-summ.TI.tr[summ.TI.tr$Trait.Category.New=='habitat',]
+justHabitat.o<-orderBy(~-nID, justHabitat)
+#justHabitat.o[1:10,'Trait.Name']
+``` 
+Characteristic traits within each trait category include...
+(1) body size: height, body size, max height, canopy height, body length
+(2) growth allocation: specific leaf area, leaf dry matter content, leaf size, wood density
+(3) resource use: diet, foraging method, foraging substrate, N fixation, root type
+(4) reproduction: seed mass, clonality, reproduction mode, pollen vector, flowering period
+
+Note: These plots only include traits that show up in 5 or more studies.
+
+```{r Q2_traits_3,echo=FALSE, warning=FALSE}
+#how many traits?
+summ.TI.numTr <- ddply(Trait.Info.1,~ID, summarise, 
+              nTrait=length(unique(Trait.Name)),
+              nTraitCat=length(unique(Trait.Category.New)))
+summ.TI.numTr1<-merge(summ.TI.numTr, id_sys1Grp, by="ID")
+
+#plot
+medianTr<-median(summ.TI.numTr1$nTrait, na.rm=T)
+numTraits.sys1Grp<-ddply(summ.TI.numTr1, ~sys1Grp, summarize, 
+                         mean=mean(nTrait, na.rm=T),
+                         med=median(nTrait, na.rm=T),
+                         min=min(nTrait, na.rm=T),
+                         max=max(nTrait, na.rm=T))
+
+#classify by just A/T
+summ.TI.numTr1$aquatic<-"no"
+summ.TI.numTr1[grepl("aquatic", summ.TI.numTr1$sys1Grp),"aquatic"]<-"yes"
+summ.TI.numTr1$terrestrial<-"no"
+summ.TI.numTr1[grepl("terrestrial", summ.TI.numTr1$sys1Grp),"terrestrial"]<-"yes"
+
+numTraits.A<-ddply(summ.TI.numTr1, ~aquatic, summarize, 
+                         mean=mean(nTrait, na.rm=T),
+                         med=median(nTrait, na.rm=T),
+                         min=min(nTrait, na.rm=T),
+                         max=max(nTrait, na.rm=T))
+numTraits.T<-ddply(summ.TI.numTr1, ~terrestrial, summarize, 
+                         mean=mean(nTrait, na.rm=T),
+                         med=median(nTrait, na.rm=T),
+                         min=min(nTrait, na.rm=T),
+                         max=max(nTrait, na.rm=T))
+
+
+#numTraits.sys1Grp
+#paste('Median =',medianTr)
+summ.TI.numTr1.1<-subset(summ.TI.numTr1, sys1Grp != 'other')
+Plot.numTraits.sys1Grp<-ggplot(summ.TI.numTr1.1, aes(x =nTrait, fill=sys1Grp))+
+  geom_histogram(binwidth=1)+xlab("Number of traits")+ 
+  facet_wrap(~sys1Grp, ncol=2, scales='free_y') +
+  scale_x_continuous(expand = c(0,0), limits=c(1,50), breaks=c(0,2,5,7,10, 20, 30, 40, 50)) +
+  scale_y_continuous(expand = c(0,0)) +
+  ylab("Number of studies")+ theme_bw() +
+  geom_vline(xintercept=medianTr, col=1, linetype=2)+
+  scale_fill_manual(name='System and Taxa',
+                    labels=c(sys1Grp_labels),
+                    values=c(sys1Grp_colors)) +
+  guides(fill=FALSE)
+#Plot.numTraits.sys1Grp
+
+
+#how many trait categories?
+medianTrCat<-median(summ.TI.numTr$nTraitCat, na.rm=T)
+numTrCat.sys1Grp<-ddply(summ.TI.numTr1, ~sys1Grp, summarize, 
+                        mean=mean(nTraitCat, na.rm=T),
+                         med=median(nTraitCat, na.rm=T),
+                         min=min(nTraitCat, na.rm=T),
+                         max=max(nTraitCat, na.rm=T))
+#numTrCat.sys1Grp
+Plot.numTraitCats<-ggplot(summ.TI.numTr, aes(x =nTraitCat))+
+  geom_histogram(binwidth=1)+xlab("Number of trait categories")+
+  scale_x_continuous(expand = c(0,0), breaks=c(1:10), limits=c(1,11)) +
+  scale_y_continuous(expand = c(0,0)) +
+  ylab("Number of studies") + theme_bw() +
+  geom_vline(xintercept=medianTrCat, col=1, linetype=2)
+#Plot.numTraitCats
+#paste('Median =',medianTrCat)
+```  
+Typically, studies include `r medianTr` traits and `r medianTrCat` trait categories (median values).
+
+
+
+## Trait sources
+```{r Q2_source_1,echo=FALSE, warning=FALSE}
+df.trsource<-ExpandMelt(df=Trait.Info.1, varName='Trait.Source')
+summ.TI.trSource <- ddply(df.trsource,~ID, summarise, 
+              nSources=length(unique(Trait.Source)),
+              nameSource=paste(unique(Trait.Source),collapse="_"),
+              nMeas=length(unique(Trait.Source[Trait.Source==1])),
+              nDatab=length(unique(Trait.Source[Trait.Source==2])),
+              nLit=length(unique(Trait.Source[Trait.Source==3])))
+summ.TI.trSource1<-summ.TI.trSource[,c('ID','nMeas','nDatab','nLit')]
+summ.TI.trSource1m<-melt(summ.TI.trSource1, id.vars='ID')
+summ.TI.trSource2 <- ddply(summ.TI.trSource1m,~variable, summarise, nID=length(value[value==1]))
+summ.TI.trSource2$Trait.Source_labels<-Trait.Source_labels
+summ.TI.trSource2.o<-orderBy(~-nID, summ.TI.trSource2)
+positions<-summ.TI.trSource2.o$Trait.Source_labels
+
+#plot
+Plot.trsource<-ggplot(summ.TI.trSource2.o, aes(x=Trait.Source_labels, y=nID)) + 
+  geom_bar(stat='identity') + 
+  ylab('Number of studies') + xlab('Trait source') +
+  scale_y_continuous(expand=c(0,0), limits=c(0,100)) + scale_x_discrete(limits= positions) + 
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1))
+#Plot.trsource
+
+#What % of studies measure (at least some) of their own traits?
+#What % of studies use trait databases?
+numStudies<-length(summ.TI.trSource$ID)
+nMeas<-summ.TI.trSource2.o[summ.TI.trSource2.o$variable=='nMeas', 'nID']
+nDatab<-summ.TI.trSource2.o[summ.TI.trSource2.o$variable=='nDatab', 'nID']
+percMeas<-round((nMeas/numStudies)*100, digits=0)
+percDatab<-round((nDatab/numStudies)*100, digits=0) 
+#paste(percMeas,'% of studies that measure traits')
+#paste(percDatab,'% of studies that use a trait database')
+```  
+Most studies (`r percMeas`%) measure at least some of their own traits. The next most common trait sources are from literature and trait databases. Only `r percDatab`% of studies use trait database data.
+
+```{r Q2_source_2,echo=FALSE, warning=FALSE}
+#What % of studies use >1 trait source?
+summ.TI.numTrSource<-summ.TI.trSource[,c('ID','nSources','nameSource')]
+summ.TI.numTrSource.sys1Grp<-merge(summ.TI.numTrSource, id_sys1Grp, by="ID") #used to be called 'summ1'
+total<-length(summ.TI.numTrSource$nSources)
+selection<-sum(summ.TI.numTrSource$nSources > 1)
+perc_1TrS<-round((selection/total)*100, digits=2)
+#paste(perc_1TrS,'% of studies use more than 1 trait source')
+
+#Of the studies that only use 1 source, what source is most common?
+summ.TI.numTrSource.1trS<-summ.TI.numTrSource[summ.TI.numTrSource$nSources==1,]
+summ.TI.numTrSource.1trS1<-ddply(summ.TI.numTrSource.1trS, ~nameSource, summarize, numSource=length(unique(ID)))
+numStudies1<-sum(summ.TI.numTrSource$nSources == 1)
+nMeas<-summ.TI.numTrSource.1trS1[summ.TI.numTrSource.1trS1$nameSource=='1','numSource']
+nDatab<-summ.TI.numTrSource.1trS1[summ.TI.numTrSource.1trS1$nameSource=='3','numSource']
+percMeas<-round((nMeas/numStudies1)*100, digits=0)
+percDatab<-round((nDatab/numStudies1)*100, digits=0) 
+#paste(percMeas,'% of studies that use 1 trait souce measure their own traits')
+#paste(percDatab,'% of studies that use 1 trait souce use a trait database')
+```  
+Only `r perc_1TrS`% of studies use >1 trait source. Of the studies that use only 1 trait source, `r percMeas`% measure their own traits and `r percDatab`% use trait databases.
+
+```{r Q2_source_3,echo=FALSE, warning=FALSE}
+#Have the use of trait sources changed over time?
+summ.TI.trSource.yr <- ddply(df.trsource,~year+Trait.Source, summarise, nID=length(unique(ID))) 
+summ.TI.trSource.yr<-merge(summ.TI.trSource.yr, trSourceIndex, by='Trait.Source')
+summ.TI.trSource.yr.o<-orderBy(~year+Trait.Source, summ.TI.trSource.yr)
+
+summ.TI.trSource.yr.wide<-dcast(summ.TI.trSource.yr.o, year~Trait.Source+trSourceName, value.var = 'nID')
+summ.TI.trSource.yr.wide$nID<-apply(summ.TI.trSource.yr.wide[,-1], 1, sum, na.rm=T)
+summ.TI.trSource.yr.wide$percMeas<-(summ.TI.trSource.yr.wide[,'1_Measurement']/summ.TI.trSource.yr.wide$nID)*100
+summ.TI.trSource.yr.wide$percDatab<-(summ.TI.trSource.yr.wide[,'2_Trait database']/summ.TI.trSource.yr.wide$nID)*100
+summ.TI.trSource.yr.wide.s<-subset(summ.TI.trSource.yr.wide, nID >2) #get rid of year/sources with less than 2 observations
+summ.TI.trSource.yr1<-summ.TI.trSource.yr.wide.s[,c('year','percMeas','percDatab')]
+summ.TI.trSource.yr1.long<-melt(summ.TI.trSource.yr1, measure.vars = c('percMeas','percDatab'))
+
+#plot
+Plot.trsource.yr<-ggplot(summ.TI.trSource.yr1.long, aes(x=year, y=value, fill=variable)) + 
+  geom_bar(stat='identity', position='dodge') + 
+  ylab('Percent (%) of studies') + xlab('Year') +
+  scale_y_continuous(expand=c(0,0), limits=c(0,70)) +
+  scale_x_continuous(limits=c(2005,2015), breaks=c(2006, 2008, 2010, 2012, 2014)) +
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  scale_fill_manual(name='Trait source',
+                    labels=trsource.yr_fill_labels,
+                    values=trsource.yr_fill_colors)
+Plot.trsource.yr
+```  
+Although there has been a recent push to contribute to trait databases, there does not appear to be a rise in the use of trait databases in the current literature.  Studies continue to rely primarily on their own trait measurements. Note: To make this figure, I removed year x trait source categories with less than 2 observations because a percentage made up of less than 2 observations is pretty silly.
+
+
+## FD metrics
+```{r Q2_metric_1,echo=FALSE, warning=FALSE}
+#First, need to summarize data by ID and FD metric 
+
+#by ID
+totCode<-length(unique(Metric.Info.1$code))
+unique(Metric.Info.1$code)
+totDim<-length(unique(Metric.Info.1$CAT_dimension))
+totMeth<-length(unique(Metric.Info.1$CAT_multivarMethod))
+summ.MI<-ddply(Metric.Info.1, ~ID, summarize,
+               nCode=length(unique(code)),
+               nDim=length(unique(CAT_dimension)),
+               nMeth=length(unique(CAT_multivarMethod)))
+summ.MI<-merge(summ.MI, id_sys1Grp, by="ID")
+
+#by code
+summ.MI.code <- ddply(Metric.Info.1,~code, summarise, 
+                   nID=length(unique(ID)), 
+                   Dim=unique(CAT_dimension), 
+                   Meth=unique(CAT_multivarMethod), 
+                   Abund=unique(CAT_abundance),
+                   minYear = min(year, na.rm=T))
+summ.MI.code.o<-orderBy(~-nID, summ.MI.code)
+summ.MI.code.o1<-summ.MI.code.o[which(summ.MI.code.o$nID >9),]
+summ.MI.code.o1
+
+#by code, by sys1Grp
+summ.MI.code.sys1Grp <- ddply(Metric.Info.1,~code+sys1Grp, summarise, 
+                   nID=length(unique(ID)), 
+                   Dim=unique(CAT_dimension), 
+                   Meth=unique(CAT_multivarMethod), 
+                   Abund=unique(CAT_abundance),
+                   minYear = min(year, na.rm=T))
+GROUP<-unique(summ.MI.code.sys1Grp$sys1Grp)
+topFDmetrics<-list()
+i<-0
+for(i in 1:length(GROUP)){
+  summ.grp<-summ.MI.code.sys1Grp[summ.MI.code.sys1Grp$sys1Grp == GROUP[i],]
+  summ.grp.o<-orderBy(~-nID, summ.grp)
+  topFDmetrics[[i]]<-summ.grp.o[1:6,]
+}
+names(topFDmetrics)<-GROUP
+topFDmetrics.sys1Grp<-ldply(topFDmetrics)
+
+#What % of studies use at least 1 of the top 6 FD metrics
+Metric.Info.1$top6present<-'no' #mark the row if it has a Top6 code
+Metric.Info.1[Metric.Info.1$code %in% c('Rao','FRic','FEve','FDis','FDiv', 'FD'),'top6present']<-'yes'
+summ.MI.codePresence<-ddply(Metric.Info.1, ~ID, summarize, #summarize by ID
+               nCodes=length(unique(code)),
+               nameCodes=paste(unique(code), collapse='_'),
+               nTop6=length(top6present[top6present=='yes']),
+               presTop6=nTop6!=0,
+               nRao=length(code[code=='Rao']),
+               nFRic=length(code[code=='FRic']),
+               nFEve=length(code[code=='FEve']),
+               nFDis=length(code[code=='FDis']),
+               nFDiv=length(code[code=='FDiv']),
+               nFD=length(code[code=='FD']))
+selection<-sum(summ.MI.codePresence$presTop6 == TRUE) #count the number of IDs
+totalNumStudies<-length(summ.MI.codePresence$presTop6) #count the number of IDs
+totalNumStudies
+percTop6<-round((selection/totalNumStudies)*100, digits=2)
+#paste(percTop6,'% of studies use at least 1 of the top 6 metrics')
+
+#What % of studies use each of the top 6 FD metrics?
+TOP6<-c('nRao','nFRic','nFEve','nFDis','nFDiv','nFD')
+store<-list()
+i<-0
+for(i in 1:length(TOP6)){
+  selection<-sum(summ.MI.codePresence[,TOP6[i]]) #count the number of ID
+  perc<-round((selection/totalNumStudies)*100, digits=0)
+  store[[i]]<-paste(perc,'% of studies use', TOP6[i])
+}
+store
+
+```  
+The majority of studies (`r percTop6`%) use a least 1 FD metric from the top 6 metrics. 
+- `r store[[1]]`
+- `r store[[2]]`
+- `r store[[3]]`
+- `r store[[4]]`
+- `r store[[5]]`
+- `r store[[6]]`
+
+There have been a number of metrics that have been proposed in the past couple of years, but we don't know yet whether their use will spread.  Some of the first-appearing metrics continue to dominate the current literature, i.e. FD, FRic.   
+```{r Q2_metric_2,echo=FALSE, warning=FALSE}
+#What is the relationship between the frequency each metric is used and its appearance in the literature?
+Plot.codeFreq<-ggplot(data=summ.MI.code.o) +
+  geom_point(aes(x=minYear, y=nID)) +
+  geom_text(aes(x=minYear, y=nID, label=ifelse(nID>9, as.character(code),'')), hjust=-0.2, vjust=0) +
+  scale_x_continuous(limits=c(2005,2015), breaks=c(2006, 2008, 2010, 2012, 2014)) +
+  theme_bw()+
+  theme(axis.text.x = element_text(angle=45, hjust=1)) +
+  ylab('Number of studies') + xlab('1st year the metric was observed')
+Plot.codeFreq
+```     
+
+```{r Q2_metric_3,echo=FALSE, warning=FALSE}
+#How many metrics per study?
+Plot.numFDcodes<-ggplot(summ.MI, aes(x =nCode)) +
+  geom_histogram(binwidth=1) +
+  xlab("Number of metrics") +
+  scale_x_continuous(expand = c(0,0), breaks=0:10, limits=c(0,10)) +
+  scale_y_continuous(expand = c(0,0)) +
+  ylab("Number of studies") + theme_bw() 
+#Plot.numFDcodes
+numFDmetrics<-median(summ.MI$nCode)
+numFDmetrics
+max(summ.MI$nCode)
+mean(summ.MI$nCode)
+
+#What % of studies use only 1 diversity metric?
+selection<-length(which(summ.MI$nCode == 1))
+selection
+total<-length(unique(summ.MI$ID))
+total
+answer<-round((selection/total)*100, digits=0)
+paste(answer, '% of studies use only 1 functional diversity metric')
+paste(100-answer, '% of studies use >1 functional diversity metric')
+
+#Of studies that use only 1 diversity metric, what is it?
+only1IDs<-summ.MI[summ.MI$nCode == 1,'ID']
+df.only1IDs<-Metric.Info.1[Metric.Info.1$ID %in% only1IDs,]
+summ.MI.only1 <- ddply(df.only1IDs,~code, summarise, nID=length(unique(ID)))
+summ.MI.only1.o<-orderBy(~-nID, summ.MI.only1)
+total<-sum(summ.MI.only1.o$nID)
+rao<-summ.MI.only1.o[1,'nID']
+answer2<-round(((rao)/total)*100, digits=0)
+paste('Of the studies that use only 1 FD metric,', answer2, '% use Rao')
+```  
+Each study typically includes `r numFDmetrics` FD metrics (median value). `r 100-answer`% of studies use more than 1 FD metric.  Of the studies that use only one FD metric, the majority (`r answer2`%) use Rao.
+
+
+
+## Diversity dimensions
+```{r Q2_dim_1,echo=FALSE, warning=FALSE}
+summ.MI.dim <- ddply(Metric.Info.1,~CAT_dimension, summarise, nID=length(unique(ID)))
+summ.MI.dim.o<-orderBy(~-nID, summ.MI.dim )
+positions<-summ.MI.dim.o$CAT_dimension
+
+#plot
+Plot.dim<-ggplot(summ.MI.dim.o, aes(x=CAT_dimension, y=nID)) + 
+  geom_bar(stat='identity') + 
+  ylab('Number of studies') + xlab('Functional diversity dimension') +
+  scale_y_continuous(expand=c(0,0), limits=c(0,120)) + scale_x_discrete(limits= positions) +
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1))
+Plot.dim
+
+#How many diversity dimensions per study?
+Plot.numDim<-ggplot(summ.MI, aes(x =nDim)) +
+  geom_histogram(binwidth=1)+xlab("Number of diversity dimensions") +
+  ylab("Number of studies") + theme_bw() +
+  scale_x_continuous(expand = c(0,0), breaks=0:5, limits=c(0,5)) +
+  scale_y_continuous(expand = c(0,0))
+Plot.numDim
+
+#What % of studies use only 1 diversity dimension?
+selection<-length(which(summ.MI$nDim == 1))
+selection
+total<-length(unique(summ.MI$ID))
+total
+answer<-round((selection/total)*100, digits=0)
+paste(answer, '% of studies use only 1 dimension of functional diversity, e.g. divergence, richness, etc.')
+paste(100-answer, '% of studies use >1 dimension of functional diversity, e.g. divergence, richness, etc.')
+
+#Of studies that use only 1 diversity dimension, what is it? 
+only1dim<-summ.MI[summ.MI$nDim == 1,'ID']
+df.only1dim<-Metric.Info.1[Metric.Info.1$ID %in% only1dim,]
+summ.MI.only1dim <- ddply(df.only1dim,~CAT_dimension, summarise, nID=length(unique(ID)))
+summ.MI.only1dim.o<-orderBy(~-nID, summ.MI.only1dim)
+total<-sum(summ.MI.only1dim.o$nID)
+total
+diverg<-summ.MI.only1dim.o[1,'nID']
+answer2<-round(((diverg)/total)*100, digits=0)
+paste('Of the studies that use only 1 FD dimension,', answer2, '% use divergence')
+
+#Of the studies that use >1 metric, what % look at >1 diversity dimension? 
+selection<-length(which(summ.MI$nCode > 1 & summ.MI$nDim > 1))
+total<-length(which(summ.MI$nCode > 1))
+answer3<-round((selection/total)*100, digits=0)
+#paste(answer3, '% of studies that use >1 FD metric use >1 FD dimension, e.g. divergence, richness, etc.')
+```  
+The majority of studies include FD metrics that examine functional divergence, followed in order by richness, eveness, and redundancy. Most studies look at just 1 dimension of diversity (`r answer`%), e.g. divergence, richness, etc. However, `r answer3`% of studies that use more than one FD metric, look at more than one dimension of diveristy.  Of the studies that look at only one dimension of diversity, `r answer2`% look at divergence.
+
+```{r Q2_dim_2,echo=FALSE, warning=FALSE}
+summ.MI.abund <- ddply(Metric.Info.1, ~ID, summarise,
+                       nAbund=length(CAT_abundance[CAT_abundance=='yes']),
+                       nAbund.n=length(CAT_abundance[CAT_abundance=='no']),
+                       nMetrics=length(unique(code)),
+                       total=nAbund+nAbund.n)
+summ.MI.abund$abundPresent<-summ.MI.abund$nAbund>0
+
+selection<-sum(summ.MI.abund$abundPresent==TRUE)
+total<-dim(summ.MI.abund)[1]
+answer<-round((selection/total)*100, digits=0)
+paste(answer, '% of studies incorporate abundance into at least 1 of their functional diversity metrics')
+```
+Last, `r answer`% of studies incorporate species abundance into at least 1 FD metric.
+
+
+
+## Multivariate method
+```{r Q2_mm_1,echo=FALSE, warning=FALSE}
+summ.MI.meth <- ddply(Metric.Info.1,~CAT_multivarMethod, summarise, nID=length(unique(ID)))
+summ.MI.meth.o<-orderBy(~-nID, summ.MI.meth)
+positions<-summ.MI.meth.o$CAT_multivarMethod
+
+#plot
+Plot.meth<-ggplot(summ.MI.meth.o, aes(x=CAT_multivarMethod, y=nID)) + 
+  geom_bar(stat='identity') + 
+  ylab('Number of studies') + xlab('Multivariate method') +
+  scale_y_continuous(expand=c(0,0), limits=c(0,85)) + scale_x_discrete(limits= positions) +
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1))
+#Plot.meth
+
+#How many different multivariate methods per study?
+Plot.numMeth<-ggplot(summ.MI, aes(x =nMeth)) +
+  geom_bar() + xlab("Number of method types") +
+  ylab("Number of studies") + theme_bw() +
+  scale_x_continuous(expand = c(0,0), breaks=0:4, limits=c(0,4)) +
+  scale_y_continuous(expand = c(0,0))
+#Plot.numMeth
+
+#What % of studies use only 1 multivariate method?
+selection<-length(which(summ.MI$nMeth == 1))
+total<-length(unique(summ.MI$ID))
+answer<-round((selection/total)*100, digits=0)
+paste(answer, '% of studies use only 1 multivariate method to calculate functional diversity, e.g. ordinate, cluster, other')
+#paste(100-answer, '% of studies use >1 multivariate method to calculate functional diversity, e.g. ordinate, cluster, other')
+
+#Of the studies that use >1 metric, what % look at >1 multivariate method?  
+selection<-length(which(summ.MI$nCode > 1 & summ.MI$nMeth > 1))
+total<-length(which(summ.MI$nCode > 1))
+answer2<-round((selection/total)*100, digits=0)
+paste(answer2, '% of studies that use >1 FD metric, use >1 multivariate method for calculating functional diversity, e.g. ordinate, cluster, other')
+selection
+total
+
+#Of the studies that use only 1 multivariate method, what is it?
+only1meth<-summ.MI[summ.MI$nMeth == 1,'ID']
+df.only1meth<-Metric.Info.1[Metric.Info.1$ID %in% only1meth,]
+summ.MI.only1meth <- ddply(df.only1meth,~CAT_multivarMethod, summarise, nID=length(unique(ID)))
+summ.MI.only1meth.o<-orderBy(~-nID, summ.MI.only1meth)
+total<-sum(summ.MI.only1meth.o$nID)
+ordin<-summ.MI.only1meth.o[1,'nID']
+answer3<-round(((ordin)/total)*100, digits=0)
+paste('Of the studies that use only 1 FD method,', answer3, '% use ordination')
+
+summ.MI.only1meth.o
+total
+
+```  
+The majority of studies use FD metrics that rely on ordination, followed by distance-only and cluster based methods. Most studies use only 1 multivariate method per study. Of the studies that present more than one FD metric, `r 100-answer2`% use more than one multivariate method. Of the studies that use only one multivariate method (`r answer`), `r answer3`% use ordination. 
+
+
+
+# Are there systematic differences in characterizing FD depending on the focal ecosystem or taxa? What are they? 
+
+## Number of species
+```{r Q3_numSpp_1, echo=FALSE, warning=FALSE}
+summ.SI.numSp.sys1Grp
+Plot.numSpecies.sys1Grp
+```
+
+## Number of traits
+```{r Q3_numTraits_1,echo=FALSE, warning=FALSE}
+numTraits.sys1Grp
+numTraits.A
+numTraits.T
+Plot.numTraits.sys1Grp
+```  
+
+## Trait categories
+```{r Q3_traits_1,echo=FALSE, warning=FALSE}
+Plot.traitCat.sys1Grp
+Plot.traitCat.sys1Grp2
+numTrCat.sys1Grp
+```  
+
+## FD metrics
+```{r Q3_metrics_1,echo=FALSE, warning=FALSE}
+Plot.FD.sys1Grp<-ggplot(topFDmetrics.sys1Grp, aes(x=code, y=nID)) + 
+  geom_bar(stat='identity') + 
+  facet_wrap(~sys1Grp, scales ='free') +
+  ylab('Number of studies') + xlab('FD metric') +
+  theme_bw() + theme(axis.text.x = element_text(angle=45, hjust=1))
+Plot.FD.sys1Grp
+```  
+
+
+
+
+
+
+
+
+
+
+
+

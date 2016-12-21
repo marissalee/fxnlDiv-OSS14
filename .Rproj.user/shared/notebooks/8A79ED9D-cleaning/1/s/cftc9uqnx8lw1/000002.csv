@@ -1,0 +1,6 @@
+"0","sum(!unique(Trait.Info.Subset$ID) %in% unique(Study.Info.Subset$ID)) #if 0, then all the IDs in traitInfo are in studyInfo
+"
+"1","[1]"
+"1"," 0"
+"1","
+"
