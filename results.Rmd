@@ -52,20 +52,16 @@ source("code/mytheme.R")
 ```{r basic, echo=FALSE, warning=FALSE}
 #how many studies?
 totalNumStudies<-length(unique(Study.Info.1$ID))
-paste(totalNumStudies, 'accepted studies in the dataset') # 152 good
 
-#does this match with the other datasets?
-length(unique(Trait.Info.1$ID)) # 152 good
-length(unique(Metric.Info.1$ID)) # only 149... why is that??
-#which IDs are missing from Metric.Info?
-unique(Study.Info.1$ID)[!unique(Study.Info.1$ID) %in% unique(Metric.Info.1$ID)]
-
+#does this match across our datasets?
+totalNumStudies
+length(unique(Trait.Info.1$ID)) 
+length(unique(Metric.Info.1$ID)) 
 
 #how many of those studies were published in 2014, the most recent year included in this dataset?
 summ.SI.yr <- ddply(Study.Info.1,~year, summarise, nID=length(unique(ID))) 
 numStudies2014<-summ.SI.yr[summ.SI.yr$year==2014,'nID']
 perc_2014<-round((numStudies2014/totalNumStudies)*100, digits=2)
-paste(perc_2014, "% of studies were published last year")
 ```  
 There are `r totalNumStudies` accepted studies in the dataset. In the most recent year, 2014, `r numStudies2014` were published, which is `r perc_2014` % of the total dataset.  
 
@@ -87,8 +83,8 @@ Plot.iso<-ggplot(summ.SI.iso.o1, aes(x=region.ISO3, y=nID)) +
   scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits=positions) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle=45, hjust=1))
-#Plot.iso
-#positions
+Plot.iso
+positions
 ```  
 `r positions`.
 
@@ -104,7 +100,7 @@ studiesWithT<-sum(summ.SI.sys1$presenceT==1)
 totalNumStudies<-length(summ.SI.sys1$ID)
 studiesWithBoth<-sum(summ.SI.sys1$presenceA==1 & summ.SI.sys1$presenceT==1)
 perc_terrestrial<-round((studiesWithT/totalNumStudies)*100, digits=2)
-#paste(perc_terrestrial, "% of studies are terrestrial")
+paste(perc_terrestrial, "% of studies are terrestrial")
 
 #terrestrial plants?
 summ.SI.sys1Grp <- ddply(Study.Info.1,~sys1Grp, summarise, nID=length(unique(ID))) 
@@ -119,9 +115,10 @@ Plot.numStudies.sys1Grp<-ggplot(summ.SI.sys1Grp, aes(x=sys1Grp, y=nID, fill=sys1
                     labels=sys1Grp_labels,
                     values=sys1Grp_colors) +
   guides(fill=FALSE)
-#Plot.numStudies.sys1Grp
+Plot.numStudies.sys1Grp
 
 summ.SI.sys1Grp
+perc_TrPl
 ```  
 The majority of studies include terrestial systems, which make up `r perc_terrestrial` %.  Of the studies that look at terrestrial systems, `r studiesWithTrPl` studies or `r perc_TrPl`% of the full dataset specifically measure the FD of terrestrial plants.
 
@@ -169,7 +166,7 @@ summ.SI.hab <- ddply(df.habitat,~ID, summarise,
               DESE=sum(habitat=='DESE'))
 numStudiesPresent<-apply(summ.SI.hab, 2, sum)[-1]
 habitatName<-names(numStudiesPresent)
-#habitatName
+habitatName
 #habitat_labels
 
 summ.SI.habitat<-data.frame(habitatName, numStudiesPresent, habitat_labels)
@@ -194,6 +191,7 @@ Plot.habitat.sys1<-ggplot(summ.SI.habitat.o, aes(x=habitat_labels, y=numStudiesP
                     label=c('Terrestrial','Aquatic'),
                     values=c('#008000','#1F497D'))
 Plot.habitat.sys1
+summ.SI.habitat.o
 
 
 ### look at habitat x sys1Grp ###
@@ -231,7 +229,7 @@ Plot.habitat.sys1Grp<-ggplot(summ.SI.hab1.sys1Grp.long1, aes(x=habName, y=value,
                     values=c('#008000','#329932',
                              '#1F497D','#4b6d97','#D72027'))
 
-Plot.habitat.sys1Grp
+summ.SI.hab1.sys1Grp.long1
 
 #percent of studies that include grasslands?
 perc_grassland<-round((summ.SI.habitat[summ.SI.habitat$habitatName=='GRAS','numStudiesPresent']/totalNumStudies)*100, digits=2)
@@ -472,7 +470,11 @@ Plot.traitCat.sys1Grp2<-ggplot(summ.TI.cat3.1.o.1, aes(x=trCat, y=nID, fill=sys1
                     labels=c(sys1Grp_labels),
                     values=c(sys1Grp_colors)) +
   guides(fill=FALSE)
-#Plot.traitCat.sys1Grp2
+Plot.traitCat.sys1Grp2
+
+### which traits were classified as 'resource allocation' for terrestrial plants?
+Trait.Info.1.tp<-subset(Trait.Info.1, sys1Grp=="terrestrial plants" & Trait.Category.New == "resource use")
+unique(Trait.Info.1.tp$Trait.Name)
 ```  
 The top five trait categories that are represented in this dataset are (1) body size, (2) growth allocation, (3) resource use, (4) reproduction, and (5) temporal partioning.
 
@@ -498,7 +500,7 @@ names(Plots.trait)<-CAT
 
 #Plots.trait[['growth allocation']] + ggtitle('Growth allocation')
 #Plots.trait[['body size']] + ggtitle('Body size')
-#Plots.trait[['resource use']] + ggtitle('Resource use')
+Plots.trait[['resource use']] + ggtitle('Resource use')
 #Plots.trait[['reproduction']] + ggtitle('Reproduction')
 #Plots.trait[['temporal partitioning']]
 #Plots.trait[['unclassified']]
@@ -506,7 +508,7 @@ names(Plots.trait)<-CAT
 #habitat trait examples
 justHabitat<-summ.TI.tr[summ.TI.tr$Trait.Category.New=='habitat',]
 justHabitat.o<-orderBy(~-nID, justHabitat)
-#justHabitat.o[1:10,'Trait.Name']
+justHabitat.o[1:10,'Trait.Name']
 ``` 
 Characteristic traits within each trait category include...
 (1) body size: height, body size, max height, canopy height, body length
@@ -549,8 +551,8 @@ numTraits.T<-ddply(summ.TI.numTr1, ~terrestrial, summarize,
                          max=max(nTrait, na.rm=T))
 
 
-#numTraits.sys1Grp
-#paste('Median =',medianTr)
+numTraits.sys1Grp
+paste('Median =',medianTr)
 summ.TI.numTr1.1<-subset(summ.TI.numTr1, sys1Grp != 'other')
 Plot.numTraits.sys1Grp<-ggplot(summ.TI.numTr1.1, aes(x =nTrait, fill=sys1Grp))+
   geom_histogram(binwidth=1)+xlab("Number of traits")+ 
@@ -573,7 +575,7 @@ numTrCat.sys1Grp<-ddply(summ.TI.numTr1, ~sys1Grp, summarize,
                          med=median(nTraitCat, na.rm=T),
                          min=min(nTraitCat, na.rm=T),
                          max=max(nTraitCat, na.rm=T))
-#numTrCat.sys1Grp
+numTrCat.sys1Grp
 Plot.numTraitCats<-ggplot(summ.TI.numTr, aes(x =nTraitCat))+
   geom_histogram(binwidth=1)+xlab("Number of trait categories")+
   scale_x_continuous(expand = c(0,0), breaks=c(1:10), limits=c(1,11)) +
@@ -581,7 +583,8 @@ Plot.numTraitCats<-ggplot(summ.TI.numTr, aes(x =nTraitCat))+
   ylab("Number of studies") + theme_bw() +
   geom_vline(xintercept=medianTrCat, col=1, linetype=2)
 #Plot.numTraitCats
-#paste('Median =',medianTrCat)
+paste('Median =',medianTrCat)
+
 ```  
 Typically, studies include `r medianTr` traits and `r medianTrCat` trait categories (median values).
 
@@ -618,7 +621,7 @@ nMeas<-summ.TI.trSource2.o[summ.TI.trSource2.o$variable=='nMeas', 'nID']
 nDatab<-summ.TI.trSource2.o[summ.TI.trSource2.o$variable=='nDatab', 'nID']
 percMeas<-round((nMeas/numStudies)*100, digits=0)
 percDatab<-round((nDatab/numStudies)*100, digits=0) 
-#paste(percMeas,'% of studies that measure traits')
+paste(percMeas,'% of studies that measure traits')
 #paste(percDatab,'% of studies that use a trait database')
 ```  
 Most studies (`r percMeas`%) measure at least some of their own traits. The next most common trait sources are from literature and trait databases. Only `r percDatab`% of studies use trait database data.
@@ -630,7 +633,7 @@ summ.TI.numTrSource.sys1Grp<-merge(summ.TI.numTrSource, id_sys1Grp, by="ID") #us
 total<-length(summ.TI.numTrSource$nSources)
 selection<-sum(summ.TI.numTrSource$nSources > 1)
 perc_1TrS<-round((selection/total)*100, digits=2)
-#paste(perc_1TrS,'% of studies use more than 1 trait source')
+paste(perc_1TrS,'% of studies use more than 1 trait source')
 
 #Of the studies that only use 1 source, what source is most common?
 summ.TI.numTrSource.1trS<-summ.TI.numTrSource[summ.TI.numTrSource$nSources==1,]
@@ -640,8 +643,8 @@ nMeas<-summ.TI.numTrSource.1trS1[summ.TI.numTrSource.1trS1$nameSource=='1','numS
 nDatab<-summ.TI.numTrSource.1trS1[summ.TI.numTrSource.1trS1$nameSource=='3','numSource']
 percMeas<-round((nMeas/numStudies1)*100, digits=0)
 percDatab<-round((nDatab/numStudies1)*100, digits=0) 
-#paste(percMeas,'% of studies that use 1 trait souce measure their own traits')
-#paste(percDatab,'% of studies that use 1 trait souce use a trait database')
+paste(percMeas,'% of studies that use 1 trait souce measure their own traits')
+paste(percDatab,'% of studies that use 1 trait souce use a trait database')
 ```  
 Only `r perc_1TrS`% of studies use >1 trait source. Of the studies that use only 1 trait source, `r percMeas`% measure their own traits and `r percDatab`% use trait databases.
 
@@ -681,6 +684,7 @@ Although there has been a recent push to contribute to trait databases, there do
 #by ID
 totCode<-length(unique(Metric.Info.1$code))
 unique(Metric.Info.1$code)
+totalNumMetrics<-length(unique(Metric.Info.1$code))
 totDim<-length(unique(Metric.Info.1$CAT_dimension))
 totMeth<-length(unique(Metric.Info.1$CAT_multivarMethod))
 summ.MI<-ddply(Metric.Info.1, ~ID, summarize,
@@ -688,7 +692,6 @@ summ.MI<-ddply(Metric.Info.1, ~ID, summarize,
                nDim=length(unique(CAT_dimension)),
                nMeth=length(unique(CAT_multivarMethod)))
 summ.MI<-merge(summ.MI, id_sys1Grp, by="ID")
-
 #by code
 summ.MI.code <- ddply(Metric.Info.1,~code, summarise, 
                    nID=length(unique(ID)), 
@@ -736,7 +739,7 @@ selection<-sum(summ.MI.codePresence$presTop6 == TRUE) #count the number of IDs
 totalNumStudies<-length(summ.MI.codePresence$presTop6) #count the number of IDs
 totalNumStudies
 percTop6<-round((selection/totalNumStudies)*100, digits=2)
-#paste(percTop6,'% of studies use at least 1 of the top 6 metrics')
+paste(percTop6,'% of studies use at least 1 of the top 6 metrics')
 
 #What % of studies use each of the top 6 FD metrics?
 TOP6<-c('nRao','nFRic','nFEve','nFDis','nFDiv','nFD')
@@ -750,6 +753,8 @@ for(i in 1:length(TOP6)){
 store
 
 ```  
+The total number of metrics identified is `r totalNumMetrics`
+
 The majority of studies (`r percTop6`%) use a least 1 FD metric from the top 6 metrics. 
 - `r store[[1]]`
 - `r store[[2]]`
@@ -802,6 +807,8 @@ summ.MI.only1.o<-orderBy(~-nID, summ.MI.only1)
 total<-sum(summ.MI.only1.o$nID)
 rao<-summ.MI.only1.o[1,'nID']
 answer2<-round(((rao)/total)*100, digits=0)
+rao
+total
 paste('Of the studies that use only 1 FD metric,', answer2, '% use Rao')
 ```  
 Each study typically includes `r numFDmetrics` FD metrics (median value). `r 100-answer`% of studies use more than 1 FD metric.  Of the studies that use only one FD metric, the majority (`r answer2`%) use Rao.
@@ -854,7 +861,10 @@ paste('Of the studies that use only 1 FD dimension,', answer2, '% use divergence
 selection<-length(which(summ.MI$nCode > 1 & summ.MI$nDim > 1))
 total<-length(which(summ.MI$nCode > 1))
 answer3<-round((selection/total)*100, digits=0)
-#paste(answer3, '% of studies that use >1 FD metric use >1 FD dimension, e.g. divergence, richness, etc.')
+paste(answer3, '% of studies that use >1 FD metric use >1 FD dimension, e.g. divergence, richness, etc.')
+total
+selection
+length(which(summ.MI$nDim == 4))
 ```  
 The majority of studies include FD metrics that examine functional divergence, followed in order by richness, eveness, and redundancy. Most studies look at just 1 dimension of diversity (`r answer`%), e.g. divergence, richness, etc. However, `r answer3`% of studies that use more than one FD metric, look at more than one dimension of diveristy.  Of the studies that look at only one dimension of diversity, `r answer2`% look at divergence.
 
@@ -922,8 +932,14 @@ ordin<-summ.MI.only1meth.o[1,'nID']
 answer3<-round(((ordin)/total)*100, digits=0)
 paste('Of the studies that use only 1 FD method,', answer3, '% use ordination')
 
-summ.MI.only1meth.o
-total
+dist<-summ.MI.only1meth.o[2,'nID']
+answer4<-round(((dist)/total)*100, digits=0)
+paste('Of the studies that use only 1 FD method,', answer4, '% use distance')
+
+clust<-summ.MI.only1meth.o[3,'nID']
+answer5<-round((clust/total)*100, digits=0)
+paste('Of the studies that use only 1 FD method,', answer5, '% use clustering')
+
 
 ```  
 The majority of studies use FD metrics that rely on ordination, followed by distance-only and cluster based methods. Most studies use only 1 multivariate method per study. Of the studies that present more than one FD metric, `r 100-answer2`% use more than one multivariate method. Of the studies that use only one multivariate method (`r answer`), `r answer3`% use ordination. 
@@ -963,9 +979,63 @@ Plot.FD.sys1Grp<-ggplot(topFDmetrics.sys1Grp, aes(x=code, y=nID)) +
 Plot.FD.sys1Grp
 ```  
 
+## Infographic
+```{r Q1_habitat, echo=FALSE, warning=FALSE, include=FALSE}
 
+#avg num traits and species /study by habitat
+ddply(df.habitat, ~habitat, summarize,
+      medTrait=median(nTrait),
+      medSpp=median(Total.Number.Species, na.rm=T))
 
+#source of traits
+habitatCode<-df.habitat[,c("ID","habitat")]
+df.trsource<-ExpandMelt(df=Trait.Info.1, varName='Trait.Source')
+habitat.trsource<-merge(habitatCode, df.trsource[,c("ID","Trait.Source")])
+habitat.trsource<-unique(habitat.trsource)
+summ.TI.trSource <- ddply(habitat.trsource,~habitat, summarise, 
+              nSources=length(unique(Trait.Source)),
+              nameSource=paste(unique(Trait.Source),collapse="_"),
+              nMeas=length(Trait.Source[Trait.Source==1]),
+              nDatab=length(Trait.Source[Trait.Source==2]),
+              nLit=length(Trait.Source[Trait.Source==3]))
+summ.TI.trSource
 
+#top traits
+habitat.trCat<-merge(habitatCode, df.trsource[,c("ID","Trait.Category.New")])
+habitat.trCat<-unique(habitat.trCat)
+traitCats<-c("biogeography","body size","dispersal","growth allocation","habitat","locomotion","reproduction", "resource use","temporal partitioning")
+summ.TI.trCat <- ddply(habitat.trCat,~habitat, summarise, 
+              nCat=length(unique(Trait.Category.New)),
+              nBiogeog=length(Trait.Category.New[Trait.Category.New==traitCats[1]]),
+              nBodySize=length(Trait.Category.New[Trait.Category.New==traitCats[2]]),
+              nDispersal=length(Trait.Category.New[Trait.Category.New==traitCats[3]]),
+              nGrowthAllo=length(Trait.Category.New[Trait.Category.New==traitCats[4]]),
+              nHabitat=length(Trait.Category.New[Trait.Category.New==traitCats[5]]),
+              nLocomot=length(Trait.Category.New[Trait.Category.New==traitCats[6]]),
+              nRepoduc=length(Trait.Category.New[Trait.Category.New==traitCats[7]]),
+              nResourc=length(Trait.Category.New[Trait.Category.New==traitCats[8]]),
+              nTempAllo=length(Trait.Category.New[Trait.Category.New==traitCats[9]]),
+              nOther=length(Trait.Category.New[!Trait.Category.New %in% traitCats])
+              )
+summ.TI.trCat
+
+#FD metrics
+habitat.metric<-merge(summ.MI, habitatCode)
+habitat.metric<-unique(habitat.metric)
+summ<-ddply(habitat.metric, ~habitat, summarize,
+            mednCode=median(nCode))
+summ
+
+habitat.dim<-unique(merge(Metric.Info.1[,c("ID","CAT_dimension")], habitatCode))
+summ<-ddply(habitat.dim, ~habitat, summarize,
+            nDiverg=length(CAT_dimension[CAT_dimension=="divergence"]),
+            nEve=length(CAT_dimension[CAT_dimension=="evenness"]),
+            nRedun=length(CAT_dimension[CAT_dimension=="redundancy"]),
+            nRich=length(CAT_dimension[CAT_dimension=="richness"])
+            )
+summ
+
+```
 
 
 
